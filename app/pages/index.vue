@@ -1,7 +1,11 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import AppPage from "@/components/AppPage.vue"
+</script>
 
 <template>
-  <div>Page: index</div>
+  <AppPage>
+    <div>Page: index</div>
+  </AppPage>
 </template>
 
 <style scoped></style>

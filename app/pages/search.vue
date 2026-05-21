@@ -1,10 +1,12 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import AppPage from "@/components/AppPage.vue"
+</script>
 
 <template>
-  <div>
+  <AppPage>
     Page: search
     <SearchGithubUser />
-  </div>
+  </AppPage>
 </template>
 
 <style scoped></style>

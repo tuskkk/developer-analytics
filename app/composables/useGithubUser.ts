@@ -1,4 +1,4 @@
-import { computed, ref } from "vue";
+import { computed } from "vue";
 import { useLazyQuery } from "@vue/apollo-composable";
 import { GITHUB_USER_QUERY } from "~/graphql/queries/githubUserQuery";
 import type { GithubUserResponse } from "~/types/GithubUserResponse";

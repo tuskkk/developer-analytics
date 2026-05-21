@@ -1,7 +1,11 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import AppPage from "@/components/AppPage.vue"
+</script>
 
 <template>
-  <div>Page: developerProfile</div>
+  <AppPage>
+    <div>Page: developerProfile</div>
+  </AppPage>
 </template>
 
 <style scoped></style>

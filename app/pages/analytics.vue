@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import AppPage from "@/components/AppPage.vue"
+import AppPage from "@/components/AppPage.vue";
 </script>
 
 <template>
@@ -8,11 +8,4 @@ import AppPage from "@/components/AppPage.vue"
   </AppPage>
 </template>
 
-<style scoped>
-  @import "tailwindcss";
-  @import "@fontsource/inter";
-
-  @theme {
-    --font-sans: "Inter", sans-serif;
-  }
-</style>
+<style scoped></style>

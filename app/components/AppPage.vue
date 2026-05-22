@@ -3,9 +3,9 @@
 <template>
   <div>
     <AppNavbar />
-    <slot /> 
-    <!-- todo: Add section with container after configuration of grid in Tailwind config -->
+    <slot />
     <AppFooter />
+    <!-- todo: Add section with container after configuration of grid in Tailwind config -->
   </div>
 </template>
 

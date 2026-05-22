@@ -17,7 +17,6 @@ export default {
         '2xl': '1536px',
       },
       spacing: {
-        gutter: '10px',
         gutterXl: '30px',
       },
     },

@@ -8,4 +8,11 @@ import AppPage from "@/components/AppPage.vue"
   </AppPage>
 </template>
 
-<style scoped></style>
+<style scoped>
+  @import "tailwindcss";
+  @import "@fontsource/inter";
+
+  @theme {
+    --font-sans: "Inter", sans-serif;
+  }
+</style>

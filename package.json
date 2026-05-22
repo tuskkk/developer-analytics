@@ -15,6 +15,7 @@
     "test:nuxt": "vitest --project nuxt"
   },
   "dependencies": {
+    "@fontsource/inter": "^5.2.8",
     "@lucide/vue": "^1.16.0",
     "@nuxt/eslint": "^1.15.2",
     "@nuxt/icon": "^2.2.2",

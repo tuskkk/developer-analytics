@@ -4,7 +4,11 @@ import AppPage from "@/components/AppPage.vue";
 
 <template>
   <AppPage>
-    <div>Page: index</div>
+    <div
+      class="w-full grid grid-cols-6 gap-2.5 xl:grid-cols-12 xl:gap-gutterXl"
+    >
+      Page: index
+    </div>
   </AppPage>
 </template>
 

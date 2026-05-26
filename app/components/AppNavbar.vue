@@ -8,7 +8,7 @@ const searchQuery = defineModel<string>({
 </script>
 
 <template>
-  <header class="sticky w-screen gap-2.5 top-0 z-50 bg-gray-300">
+  <header class="sticky w-screen gap-2.5 top-0 z-50 bg-primary">
     <section
       class="max-w-full px-2 mx-auto flex items-center justify-between gap-4 py-3 md:px-2.5 xl:max-w-layoutXl xl:px-0 2xl:max-w-layout2Xl"
     >
@@ -19,7 +19,7 @@ const searchQuery = defineModel<string>({
           class="h-12 w-full"
           placeholder="Search developers..."
         />
-        </div>
+      </div>
     </section>
   </header>
 </template>

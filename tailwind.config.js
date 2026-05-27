@@ -29,6 +29,10 @@ export default {
       spacing: {
         gutterXl: '30px',
       },
+      backgroundImage: {
+        'hero-mobile': 'url(/images/hero_mobile.png)',
+        'hero-desktop': 'url(/images/hero_desktop.png)',
+      },
     },
   },
   plugins: [],

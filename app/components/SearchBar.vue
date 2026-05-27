@@ -18,16 +18,17 @@ const clearSearch = () => {
 <template>
   <div class="relative">
     <Search
-      :size="24"
+      :size="14"
       class="absolute left-2 top-1/2 -translate-y-1/2 text-primaryText md:left-3"
     />
 
     <input
       ref="inputRef"
       v-model="model"
+      name="search"
       type="text"
       :placeholder="placeholder ?? 'Search...'"
-      class="w-full h-full rounded-lg border border-primary py-2 pl-8 pr-0.5 text-sm outline-none transition-colors focus:border-primaryText md:pl-11 md:pr-4"
+      class="w-full h-full border border-primary rounded-2xl py-2 pl-8 pr-0.5 text-sm outline-none transition-colors hover:border-primaryText focus:border-primaryText md:pl-11 md:pr-4"
     />
     <button
       v-if="model"

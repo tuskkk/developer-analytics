@@ -6,7 +6,7 @@ interface Props {
   isLandingPage?: boolean;
 }
 
-const { isLandingPage = false } = defineProps<Props>()
+const { isLandingPage = false } = defineProps<Props>();
 
 const searchQuery = defineModel<string>({
   default: "",
@@ -16,20 +16,18 @@ const searchQuery = defineModel<string>({
 <template>
   <header
     class="sticky w-screen gap-2.5 top-0 z-50 bg-primary"
-    :class="{ 'bg-transparent': isLandingPage }"
+    :class="[isLandingPage ? 'bg-transparent' : 'bg-primary']"
   >
     <section
       class="max-w-full px-2 mx-auto flex items-center justify-between gap-4 py-3 md:px-2.5 xl:max-w-layoutXl xl:px-0 2xl:max-w-layout2Xl"
     >
-      <AppLogo class="max-w-40" />
-      <div class="w-full max-w-[330px]">
-        <SearchBar
-          v-if="!isLandingPage"
-          v-model="searchQuery"
-          class="h-12 w-full"
-          placeholder="Search developers..."
-        />
-      </div>
+      <AppLogo class="max-w-28 md:max-w-40" />
+      <SearchBar
+        v-if="!isLandingPage"
+        v-model="searchQuery"
+        class="h-8 w-full max-w-40 md:max-w-56"
+        placeholder="Search developers..."
+      />
     </section>
   </header>
 </template>

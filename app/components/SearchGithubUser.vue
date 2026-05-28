@@ -1,15 +1,21 @@
 <template>
-  <div class="search-github-user">
+  <div class="w-full">
     <form @submit.prevent="handleSearch">
-      <input v-model="login" type="text" placeholder="Enter GitHub username" />
-
-      <button type="submit">Search</button>
+      <SearchBar
+        v-model="login"
+        :is-big="isBig"
+        class="h-10 w-full max-w-80 mx-auto mb-6"
+        placeholder="Enter GitHub username..."
+      />
     </form>
 
-    <div v-if="user">
+    <div
+      v-if="user"
+      class="w-full grid grid-cols-6 gap-2.5 xl:grid-cols-12 xl:gap-gutterXl"
+    >
       <h2>{{ user.name }}</h2>
-
-      <img :src="user.avatarUrl" :alt="user.login" width="120" />
+      <!-- todo: remove this after adding more user details on the search results page -->
+      <!--<img :src="user.avatarUrl" :alt="user.login" width="120" />
 
       <p>@{{ user.login }}</p>
 
@@ -22,16 +28,24 @@
           {{ repository.name }}
           ⭐ {{ repository.stargazerCount }}
         </li>
-      </ul>
+      </ul>-->
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
 import { ref } from "vue";
+import SearchBar from "@/components/SearchBar.vue";
+
+interface Props {
+  isBig?: boolean;
+}
+
+const { isBig = false } = defineProps<Props>();
+
 const login = ref("");
 // todo: move this to pinia store
-const { user, repositories, searchUser } = useGithubUser();
+const { user, searchUser } = useGithubUser();
 
 const handleSearch = async () => {
   if (!login.value.trim()) return;

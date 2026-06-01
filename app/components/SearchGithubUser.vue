@@ -14,21 +14,9 @@
       class="w-full grid grid-cols-6 gap-2.5 xl:grid-cols-12 xl:gap-gutterXl"
     >
       <h2>{{ user?.name }}</h2>
-      <!-- todo: remove this after adding more user details on the search results page -->
-      <!--<img :src="user.avatarUrl" :alt="user.login" width="120" />
-
-      <p>@{{ user.login }}</p>
-
-      <p>{{ user.bio }}</p>
-
-      <h3>Repositories</h3>
-
-      <ul v-if="repositories.length">
-        <li v-for="repository in repositories" :key="repository.id">
-          {{ repository.name }}
-          ⭐ {{ repository.stargazerCount }}
-        </li>
-      </ul>-->
+    </div>
+    <div v-else-if="loading" class="w-full mb-6">
+      <AppLoader />
     </div>
   </div>
 </template>
@@ -36,6 +24,7 @@
 <script setup lang="ts">
 import { ref, computed } from "vue";
 import SearchBar from "@/components/SearchBar.vue";
+import AppLoader from "@/components/AppLoader.vue";
 
 interface Props {
   isBig?: boolean;
@@ -45,7 +34,7 @@ const { isBig = false } = defineProps<Props>();
 
 // const { searchUser, user, stats: repositories } = useGithubUserStore();
 const githubUserStore = useGithubUserStore();
-const { user } = storeToRefs(githubUserStore);
+const { user, loading } = storeToRefs(githubUserStore);
 const { searchUser } = githubUserStore;
 
 const login = ref("");

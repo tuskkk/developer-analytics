@@ -1,5 +1,5 @@
 import { defineStore } from "pinia";
-import { ref, computed } from "vue";
+import { computed } from "vue";
 import { useLazyQuery } from "@vue/apollo-composable";
 import { GITHUB_USER_QUERY } from "~/graphql/queries/githubUserQuery";
 import type { GithubUserResponse } from "~/types/GithubUserResponse";
@@ -9,11 +9,9 @@ export const useGithubUserStore = defineStore("githubUser", () => {
     result,
     load,
     refetch,
+    loading,
     error: queryError,
   } = useLazyQuery<GithubUserResponse>(GITHUB_USER_QUERY);
-
-  const loading = ref(false);
-  const error = ref<Error | null>(null);
 
   const user = computed(() => result.value?.user ?? null);
 
@@ -40,7 +38,7 @@ export const useGithubUserStore = defineStore("githubUser", () => {
     repositories,
     stats,
     loading,
-    error: computed(() => error.value ?? queryError.value),
+    error: queryError,
     searchUser,
   };
 });

@@ -15,7 +15,7 @@ const searchQuery = ref("");
 <template>
   <div v-if="isLandingPage" class="relative">
     <div
-      class="absolute inset-0 bg-gradient-to-b from-black/100 to-black/0 z-0"
+      class="absolute inset-0 bg-gradient-to-b from-black/100 to-black/20 z-0"
     />
     <div class="bg-hero-mobile bg-cover bg-center z-10 md:bg-hero-desktop">
       <AppNavbar

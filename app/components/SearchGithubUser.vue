@@ -10,10 +10,10 @@
     </form>
 
     <div
-      v-if="user"
+      v-if="isUserShown"
       class="w-full grid grid-cols-6 gap-2.5 xl:grid-cols-12 xl:gap-gutterXl"
     >
-      <h2>{{ user.name }}</h2>
+      <h2>{{ user?.name }}</h2>
       <!-- todo: remove this after adding more user details on the search results page -->
       <!--<img :src="user.avatarUrl" :alt="user.login" width="120" />
 
@@ -34,7 +34,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from "vue";
+import { ref, computed } from "vue";
 import SearchBar from "@/components/SearchBar.vue";
 
 interface Props {
@@ -43,13 +43,21 @@ interface Props {
 
 const { isBig = false } = defineProps<Props>();
 
+// const { searchUser, user, stats: repositories } = useGithubUserStore();
+const githubUserStore = useGithubUserStore();
+const { user } = storeToRefs(githubUserStore);
+const { searchUser } = githubUserStore;
+
 const login = ref("");
-// todo: move this to pinia store
-const { user, searchUser } = useGithubUser();
+
+const isUserShown = computed(
+  () => !!user.value && user.value.login === login.value,
+);
 
 const handleSearch = async () => {
   if (!login.value.trim()) return;
   console.log("HANDLE SEARCH", login.value);
   await searchUser(login.value.trim());
+  console.log("USER", user.value);
 };
 </script>

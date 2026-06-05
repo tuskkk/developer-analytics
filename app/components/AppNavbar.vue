@@ -6,10 +6,6 @@ interface Props {
 }
 
 const { isLandingPage = false } = defineProps<Props>();
-
-const searchQuery = defineModel<string>({
-  default: "",
-});
 </script>
 
 <template>
@@ -21,16 +17,8 @@ const searchQuery = defineModel<string>({
       class="max-w-full px-2 mx-auto flex items-center justify-between gap-4 py-3 md:px-2.5 xl:max-w-layoutXl xl:px-0 2xl:max-w-layout2Xl"
     >
       <AppLogo class="max-w-28 md:max-w-40" />
-      <!--<form @submit.prevent="handleSearch">
-        <SearchBar
-          v-if="!isLandingPage"
-          v-model="login"
-          class="h-8 w-full max-w-40 md:max-w-56"
-        />
-      </form>-->
       <SearchGithubUser
         v-if="!isLandingPage"
-        v-model="searchQuery"
         class="h-8 w-full max-w-40 md:max-w-56"
       />
     </section>

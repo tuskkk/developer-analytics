@@ -1,33 +1,20 @@
 <script setup lang="ts">
-import { ref, computed, onMounted } from "vue";
+import { computed } from "vue";
 import AppPage from "@/components/AppPage.vue";
 import AppLoader from "@/components/AppLoader.vue";
 
 const route = useRoute();
 
-const login = ref("");
-
-onMounted(async () => {
-  await handleLoadUser();
-  login.value = route.params.login as string;
-  console.log("Mounted with login:", login.value);
-});
+const login = computed(() => route.params.login as string);
 
 // const { searchUser, user, stats: repositories } = useGithubUserDetailsStore();
 const githubUserDetailsStore = useGithubUserDetailsStore();
-const { user, loading } = storeToRefs(githubUserDetailsStore);
-const { loadUserDetails } = githubUserDetailsStore;
+const { user, loading, error } = storeToRefs(githubUserDetailsStore);
 
 const isUserShown = computed(
-  () => !!user.value && user.value.login === login.value,
+  () =>
+    login.value.length > 0 && !!user.value && user.value.login === login.value,
 );
-
-const handleLoadUser = async () => {
-  if (!login.value.trim()) return;
-  console.log("HANDLE SEARCH", login);
-  await loadUserDetails(login.value.trim());
-  console.log("USER", user.value);
-};
 </script>
 
 <template>
@@ -43,6 +30,9 @@ const handleLoadUser = async () => {
     </div>
     <div v-else-if="login" class="w-full text-center text-sm text-secondary">
       No user found with login "{{ login }}"
+    </div>
+    <div v-else-if="error" class="w-full text-center text-sm text-alert">
+      Error occurred while fetching user data: {{ error }}
     </div>
   </AppPage>
 </template>

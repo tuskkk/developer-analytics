@@ -1,5 +1,5 @@
-export const GITHUB_USER_QUERY = gql`
-  query GithubUser($login: String!) {
+export const GITHUB_USER_DETAILS_QUERY = gql`
+  query GithubUserDetails($login: String!) {
     user(login: $login) {
       login
       name

@@ -33,9 +33,9 @@ interface Props {
 const { isBig = false } = defineProps<Props>();
 
 // const { searchUser, user, stats: repositories } = useGithubUserStore();
-const githubUserStore = useGithubUserStore();
-const { user, loading } = storeToRefs(githubUserStore);
-const { searchUser } = githubUserStore;
+const githubUserDetailsStore = useGithubUserDetailsStore();
+const { user, loading } = storeToRefs(githubUserDetailsStore);
+const { searchUser } = githubUserDetailsStore;
 
 const login = ref("");
 
@@ -43,10 +43,19 @@ const isUserShown = computed(
   () => !!user.value && user.value.login === login.value,
 );
 
+const navigateToUserPage = () => {
+  if (isUserShown.value) {
+    return navigateTo({
+      path: `/githubUser/${login.value}/`,
+    });
+  }
+};
+
 const handleSearch = async () => {
   if (!login.value.trim()) return;
   console.log("HANDLE SEARCH", login.value);
   await searchUser(login.value.trim());
   console.log("USER", user.value);
+  navigateToUserPage();
 };
 </script>

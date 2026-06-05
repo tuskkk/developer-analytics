@@ -1,15 +1,18 @@
 <script setup lang="ts">
 import { Search, X } from "@lucide/vue";
 
+interface Props {
+  placeholder?: string;
+  isBig?: boolean;
+}
+
+const { isBig = false, placeholder = "Search..." } = defineProps<Props>();
+
 const model = defineModel<string>({
   default: "",
 });
 const inputRef = ref<HTMLInputElement>();
 
-defineProps<{
-  placeholder?: string;
-  isBig: boolean;
-}>();
 const clearSearch = () => {
   model.value = "";
   inputRef.value?.focus();
@@ -29,7 +32,7 @@ const clearSearch = () => {
       name="search"
       type="search"
       enterkeyhint="search"
-      :placeholder="placeholder ?? 'Search...'"
+      :placeholder="placeholder"
       class="w-full h-full border border-primary rounded-2xl py-2 pl-8 pr-0.5 text-sm text-primaryText outline-none transition-colors hover:border-primaryText focus:border-primaryText md:pl-11 md:pr-4"
     />
     <button

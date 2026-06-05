@@ -6,7 +6,8 @@ interface Props {
   isBig?: boolean;
 }
 
-const { isBig = false, placeholder = "Search..." } = defineProps<Props>();
+const { isBig = false, placeholder = "Search developers..." } =
+  defineProps<Props>();
 
 const model = defineModel<string>({
   default: "",
@@ -20,7 +21,7 @@ const clearSearch = () => {
 </script>
 
 <template>
-  <div class="relative">
+  <div class="relative h-full w-full">
     <Search
       :size="isBig ? 20 : 14"
       class="absolute left-2 top-1/2 -translate-y-1/2 text-primaryText md:left-3"

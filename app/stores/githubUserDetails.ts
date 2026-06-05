@@ -27,7 +27,7 @@ export const useGithubUserDetailsStore = defineStore(
       repositories: user.value?.repositories?.totalCount ?? 0,
     }));
 
-    const searchUser = async (login: string) => {
+    const loadUserDetails = async (login: string) => {
       if (!result.value) {
         await load(null, { login });
       } else {
@@ -41,7 +41,7 @@ export const useGithubUserDetailsStore = defineStore(
       stats,
       loading,
       error: queryError,
-      searchUser,
+      loadUserDetails,
     };
   },
 );

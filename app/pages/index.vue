@@ -21,7 +21,11 @@ const searchQuery = defineModel<string>({
           <br class="hidden md:block" />to discover what’s growing, trending,
           and worth building with.
         </p>
-        <SearchGithubUser v-model="searchQuery" is-big />
+        <SearchGithubUser
+          v-model="searchQuery"
+          class="h-10 w-full max-w-80 mx-auto mb-6"
+          is-big
+        />
       </div>
     </template>
   </AppPage>

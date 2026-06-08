@@ -37,11 +37,10 @@
       </div>
       <GithubUserStats />
     </div>
-    <div class="flex-1 items-center text-center pt-10 text-base border-t border-tertiary lg:text-lg">
-      <p
-        v-if="user.bio"
-        class="mb-4 text-primaryText"
-      >
+    <div
+      class="flex-1 items-center text-center pt-10 text-base border-t border-tertiary lg:text-lg"
+    >
+      <p v-if="user.bio" class="mb-4 text-primaryText">
         {{ user.bio }}
       </p>
     </div>
@@ -57,4 +56,3 @@ const githubUserDetailsStore = useGithubUserDetailsStore();
 
 const { user } = storeToRefs(githubUserDetailsStore);
 </script>
-

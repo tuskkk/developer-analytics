@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, onMounted } from "vue";
+import { computed } from "vue";
 import AppPage from "@/components/AppPage.vue";
 import AppLoader from "@/components/AppLoader.vue";
 import GithubUser from "@/components/GithubUser.vue";
@@ -12,13 +12,16 @@ const login = computed(() => route.params.login as string);
 const githubUserDetailsStore = useGithubUserDetailsStore();
 const { user, loading, error } = storeToRefs(githubUserDetailsStore);
 
-const isLoginFromCurrentUser = computed(() => user.value && user.value.login === login.value);
+const isLoginFromCurrentUser = computed(
+  () => user.value && user.value.login === login.value,
+);
 
-const shouldFetchUser = computed(() => !!login.value && !isLoginFromCurrentUser.value);
+const shouldFetchUser = computed(
+  () => !!login.value && !isLoginFromCurrentUser.value,
+);
 
 const isUserShown = computed(
-  () =>
-    login.value.length > 0 && isLoginFromCurrentUser.value,
+  () => login.value.length > 0 && isLoginFromCurrentUser.value,
 );
 
 if (shouldFetchUser.value) {
@@ -28,11 +31,8 @@ if (shouldFetchUser.value) {
 
 <template>
   <AppPage>
-    <div
-      v-if="isUserShown"
-      class="w-full pt-16 lg:pt-44"
-    >
-      <GithubUser v-if="isUserShown"/>
+    <div v-if="isUserShown" class="w-full pt-16 lg:pt-44">
+      <GithubUser v-if="isUserShown" />
     </div>
     <div v-else-if="loading" class="w-full mb-6">
       <AppLoader />

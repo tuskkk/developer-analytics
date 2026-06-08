@@ -8,8 +8,6 @@ interface Props {
 }
 
 const { isLandingPage = false } = defineProps<Props>();
-
-const searchQuery = ref("");
 </script>
 
 <template>
@@ -19,7 +17,6 @@ const searchQuery = ref("");
     />
     <div class="bg-hero-mobile bg-cover bg-center z-10 md:bg-hero-desktop">
       <AppNavbar
-        v-model="searchQuery"
         is-landing-page
         class="absolute top-0 left-0 z-20 w-full bg-transparent"
       />
@@ -27,14 +24,10 @@ const searchQuery = ref("");
     </div>
   </div>
   <template v-else>
-    <AppNavbar v-model="searchQuery" :is-landing-page="isLandingPage" />
+    <AppNavbar :is-landing-page="isLandingPage" />
   </template>
   <AppContainer>
-    <main>
-      <slot />
-      Search query: {{ searchQuery }}
-    </main>
+    <slot />
     <AppFooter />
-    <!-- todo: Add section with container after configuration of grid in Tailwind config -->
   </AppContainer>
 </template>

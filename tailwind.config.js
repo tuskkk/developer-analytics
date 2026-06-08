@@ -3,7 +3,7 @@ export default {
   content: [],
   theme: {
     fontFamily: {
-      sans: ['Inter', 'sans-serif'],
+      sans: ['Roboto', 'sans-serif'],
     },
     extend: {
       maxWidth: {

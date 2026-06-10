@@ -19,7 +19,7 @@ export const GITHUB_USER_DETAILS_QUERY = gql`
       }
 
       repositories(
-        first: 10
+        first: 20
         orderBy: { field: STARGAZERS, direction: DESC }
         ownerAffiliations: OWNER
         isFork: false
@@ -40,6 +40,16 @@ export const GITHUB_USER_DETAILS_QUERY = gql`
           primaryLanguage {
             name
             color
+          }
+
+          languages(first: 10) {
+            edges {
+              size
+              node {
+                name
+                color
+              }
+            }
           }
         }
       }

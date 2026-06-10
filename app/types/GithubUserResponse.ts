@@ -3,6 +3,15 @@ interface GithubLanguage {
   color: string | null;
 }
 
+interface GithubRepositoryLanguage {
+  size: number;
+
+  node: {
+    name: string;
+    color: string | null;
+  };
+}
+
 interface GithubRepository {
   id: string;
   name: string;
@@ -14,6 +23,9 @@ interface GithubRepository {
   diskUsage: number;
   url: string;
   primaryLanguage: GithubLanguage | null;
+  languages: {
+    edges: GithubRepositoryLanguage[];
+  };
 }
 
 interface GithubUser {

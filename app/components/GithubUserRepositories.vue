@@ -1,8 +1,5 @@
 <template>
-  <section
-    v-if="user?.repositories.nodes.length"
-    class="mb-4"
-  >
+  <section v-if="user?.repositories.nodes.length" class="mb-4">
     <h2 class="mb-4 text-3xl tracking-tight text-primaryText">
       Top repositories
     </h2>
@@ -55,7 +52,9 @@
           </div>
         </div>
 
-        <div class="mt-4 border-t border-tertiary pt-4 text-sm text-primaryText">
+        <div
+          class="mt-4 border-t border-tertiary pt-4 text-sm text-primaryText"
+        >
           Updated
           {{ new Date(repository.updatedAt).toLocaleDateString() }}
         </div>
@@ -67,15 +66,9 @@
 <script setup lang="ts">
 import { storeToRefs } from "pinia";
 import { useGithubUserDetailsStore } from "~/stores/githubUserDetails";
-import {
-  Star,
-  GitFork,
-  Circle,
-  Clock3,
-} from "@lucide/vue";
+import { Star, GitFork, Circle } from "@lucide/vue";
 
 const githubUserDetailsStore = useGithubUserDetailsStore();
 
 const { user } = storeToRefs(githubUserDetailsStore);
 </script>
-

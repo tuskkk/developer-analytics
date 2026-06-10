@@ -19,7 +19,9 @@
         class="flex flex-wrap items-center justify-center gap-3 mb-8 text-sm text-secondaryText tracking-wide lg:mb-4"
       >
         <span v-if="user.company">
-          <BriefcaseBusiness class="inline-block mr-1 text-secondaryText text-uppercase" />
+          <BriefcaseBusiness
+            class="inline-block mr-1 text-secondaryText text-uppercase"
+          />
           {{ user.company }}
         </span>
         <span v-if="user.location">

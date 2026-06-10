@@ -10,12 +10,12 @@ interface Props {
 }
 
 const {
-   isNavbarMinimal = false,
-   bannerImage = null,
-   showBannerMask = false
- } = defineProps<Props>();
+  isNavbarMinimal = false,
+  bannerImage = null,
+  showBannerMask = false,
+} = defineProps<Props>();
 
-  const bannerClasses = computed(() => {
+const bannerClasses = computed(() => {
   switch (bannerImage) {
     case "developer":
       return "bg-contain bg-top bg-no-repeat bg-developer-mobile md:bg-developer-desktop";

@@ -30,8 +30,10 @@ export default {
         gutterXl: '30px',
       },
       backgroundImage: {
-        'hero-mobile': 'url(/images/hero_mobile.png)',
-        'hero-desktop': 'url(/images/hero_desktop.png)',
+        'landing-mobile': 'url(/images/landing_mobile.png)',
+        'landing-desktop': 'url(/images/landing_desktop.png)',
+        'developer-mobile': 'url(/images/developer_mobile.png)',
+        'developer-desktop': 'url(/images/developer_desktop.png)',
       },
     },
   },

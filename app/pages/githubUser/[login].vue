@@ -30,19 +30,21 @@ if (shouldFetchUser.value) {
 </script>
 
 <template>
-  <AppPage>
-    <div v-if="isUserShown" class="w-full pt-16 lg:pt-44">
-      <GithubUser v-if="isUserShown" />
-    </div>
-    <div v-else-if="loading" class="w-full mb-6">
-      <AppLoader />
-    </div>
-    <div v-else-if="login" class="w-full text-center text-sm text-secondary">
-      No user found with login "{{ login }}"
-    </div>
-    <div v-else-if="error" class="w-full text-center text-sm text-alert">
-      Error occurred while fetching user data: {{ error }}
-    </div>
+  <AppPage is-navbar-minimal banner-image="developer">
+    <template #content>
+      <div v-if="isUserShown" class="w-full pt-32 lg:pt-56">
+        <GithubUser v-if="isUserShown" />
+      </div>
+      <div v-else-if="loading" class="w-full mb-6">
+        <AppLoader />
+      </div>
+      <div v-else-if="login" class="w-full text-center text-sm text-secondary">
+        No user found with login "{{ login }}"
+      </div>
+      <div v-else-if="error" class="w-full text-center text-sm text-alert">
+        Error occurred while fetching user data: {{ error }}
+      </div>
+    </template>
   </AppPage>
 </template>
 

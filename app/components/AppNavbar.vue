@@ -2,23 +2,23 @@
 import AppLogo from "@/components/AppLogo.vue";
 
 interface Props {
-  isLandingPage?: boolean;
+  isNavbarMinimal?: boolean;
 }
 
-const { isLandingPage = false } = defineProps<Props>();
+const { isNavbarMinimal = false } = defineProps<Props>();
 </script>
 
 <template>
   <header
     class="sticky w-screen gap-2.5 top-0 z-50 bg-primary"
-    :class="[isLandingPage ? 'bg-transparent' : 'bg-primary']"
+    :class="[isNavbarMinimal ? 'bg-transparent' : 'bg-primary']"
   >
     <section
       class="max-w-full px-2 mx-auto flex items-center justify-between gap-4 py-3 md:px-2.5 xl:max-w-layoutXl xl:px-0 2xl:max-w-layout2Xl"
     >
       <AppLogo class="max-w-28 md:max-w-40" />
       <SearchGithubUser
-        v-if="!isLandingPage"
+        v-if="!isNavbarMinimal"
         class="h-8 w-full max-w-40 md:max-w-56"
       />
     </section>

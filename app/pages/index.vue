@@ -8,15 +8,15 @@ const searchQuery = defineModel<string>({
 });
 </script>
 <template>
-  <AppPage is-landing-page>
-    <template #hero>
+  <AppPage is-navbar-minimal banner-image="landing" show-banner-mask>
+    <template #content>
       <div
         class="relative w-full min-h-screen mb-6 flex flex-col items-center justify-start z-10 text-center text-white px-2 pt-32 md:px-[30px] md:pt-56"
       >
         <h1 class="text-2xl mb-4 md:text-5xl md:mb-6">
           Track developer trends <br class="md:hidden" />in one place.
         </h1>
-        <p class="text-sm mb-4 md:text-lg md:mb-6">
+        <p class="text-sm mb-8 md:text-lg md:mb-10">
           Search repositories, technologies, and developer activity
           <br class="hidden md:block" />to discover what’s growing, trending,
           and worth building with.

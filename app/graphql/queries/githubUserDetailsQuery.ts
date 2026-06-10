@@ -8,6 +8,7 @@ export const GITHUB_USER_DETAILS_QUERY = gql`
       company
       location
       websiteUrl
+      url
 
       followers {
         totalCount

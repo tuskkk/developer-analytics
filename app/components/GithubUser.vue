@@ -1,7 +1,7 @@
 <template>
   <article
     v-if="user"
-    class="relative flex flex-col gap-6 py-3.5 px-4 bg-white border rounded-lg shadow-lg lg:py-9 lg:px-28"
+    class="relative flex flex-col gap-6 py-3 px-4 bg-white border rounded-lg shadow-lg lg:py-5 lg:px-28"
   >
     <img
       :src="user.avatarUrl"
@@ -19,22 +19,23 @@
         class="flex flex-wrap items-center justify-center gap-3 mb-8 text-sm text-secondaryText tracking-wide lg:mb-4"
       >
         <span v-if="user.company">
+          <BriefcaseBusiness class="inline-block mr-1 text-secondaryText text-uppercase" />
           {{ user.company }}
         </span>
         <span v-if="user.location">
           <MapPin class="inline-block mr-1 text-secondaryText text-uppercase" />
           {{ user.location }}
         </span>
-        <a
-          v-if="user.websiteUrl"
-          :href="user.websiteUrl"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="text-blue-600 hover:underline"
-        >
-          Website
-        </a>
       </div>
+      <a
+        v-if="user.url"
+        :href="user.url"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="text-blue-600 hover:underline"
+      >
+        {{ user.url }}
+      </a>
       <GithubUserStats />
     </div>
     <div
@@ -44,13 +45,16 @@
         {{ user.bio }}
       </p>
     </div>
+    <GithubUserRepositories />
   </article>
 </template>
 
 <script setup lang="ts">
 import { storeToRefs } from "pinia";
 import { useGithubUserDetailsStore } from "~/stores/githubUserDetails";
-import { MapPin } from "@lucide/vue";
+import { MapPin, BriefcaseBusiness } from "@lucide/vue";
+import GithubUserStats from "@/components/GithubUserStats.vue";
+import GithubUserRepositories from "@/components/GithubUserRepositories.vue";
 
 const githubUserDetailsStore = useGithubUserDetailsStore();
 

@@ -23,7 +23,7 @@ interface GithubUser {
   bio: string | null;
   company: string | null;
   location: string | null;
-  websiteUrl: string | null;
+  url: string | null;
 
   followers: {
     totalCount: number;

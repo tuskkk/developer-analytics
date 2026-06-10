@@ -4,27 +4,47 @@ import AppFooter from "@/components/AppFooter.vue";
 import AppContainer from "@/components/AppContainer.vue";
 
 interface Props {
-  isLandingPage?: boolean;
+  isNavbarMinimal?: boolean;
+  bannerImage?: string | null;
+  showBannerMask?: boolean;
 }
 
-const { isLandingPage = false } = defineProps<Props>();
+const {
+   isNavbarMinimal = false,
+   bannerImage = null,
+   showBannerMask = false
+ } = defineProps<Props>();
+
+  const bannerClasses = computed(() => {
+  switch (bannerImage) {
+    case "developer":
+      return "bg-contain bg-top bg-no-repeat bg-developer-mobile md:bg-developer-desktop";
+
+    case "landing":
+      return "bg-cover bg-center bg-landing-mobile md:bg-landing-desktop";
+
+    default:
+      return "";
+  }
+});
 </script>
 
 <template>
-  <div v-if="isLandingPage" class="relative">
+  <div v-if="isNavbarMinimal" class="relative">
     <div
-      class="absolute inset-0 bg-gradient-to-b from-black/100 to-black/20 z-0"
+      v-if="showBannerMask"
+      class="absolute inset-0 bg-gradient-to-b from-black/80 to-black/0 z-0"
     />
-    <div class="bg-hero-mobile bg-cover bg-center z-10 md:bg-hero-desktop">
+    <div :class="[bannerClasses, 'z-10']">
       <AppNavbar
-        is-landing-page
+        is-navbar-minimal
         class="absolute top-0 left-0 z-20 w-full bg-transparent"
       />
-      <slot name="hero" />
+      <slot name="content" />
     </div>
   </div>
   <template v-else>
-    <AppNavbar :is-landing-page="isLandingPage" />
+    <AppNavbar :is-navbar-minimal="isNavbarMinimal" />
   </template>
   <AppContainer>
     <slot />

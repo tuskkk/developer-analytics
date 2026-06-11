@@ -1,7 +1,7 @@
 <template>
   <article
     v-if="user"
-    class="relative flex flex-col gap-6 py-3 px-4 bg-white border rounded-lg shadow-lg lg:py-5 lg:px-28"
+    class="relative flex flex-col gap-6 py-3.5 px-4 bg-white border rounded-lg shadow-lg lg:py-5 lg:px-28"
   >
     <img
       :src="user.avatarUrl"
@@ -47,7 +47,10 @@
         {{ user.bio }}
       </p>
     </div>
-    <GithubUserRepositories />
+    <section v-if="user?.repositories.nodes.length" class="mb-16">
+      <GithubUserRepositories />
+      <GithubUserTechStack />
+    </section>
   </article>
 </template>
 
@@ -57,6 +60,7 @@ import { useGithubUserDetailsStore } from "~/stores/githubUserDetails";
 import { MapPin, BriefcaseBusiness } from "@lucide/vue";
 import GithubUserStats from "@/components/GithubUserStats.vue";
 import GithubUserRepositories from "@/components/GithubUserRepositories.vue";
+import GithubUserTechStack from "@/components/GithubUserTechStack.vue";
 
 const githubUserDetailsStore = useGithubUserDetailsStore();
 

@@ -1,5 +1,5 @@
 <template>
-  <section v-if="user?.repositories.nodes.length" class="mb-4">
+  <section v-if="user?.repositories.nodes.length" class="mb-16">
     <h2 class="mb-4 text-3xl tracking-tight text-primaryText">
       Top repositories
     </h2>

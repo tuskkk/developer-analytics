@@ -55,7 +55,6 @@
 </template>
 
 <script setup lang="ts">
-import { storeToRefs } from "pinia";
 import { useGithubUserDetailsStore } from "~/stores/githubUserDetails";
 import { MapPin, BriefcaseBusiness } from "@lucide/vue";
 import GithubUserStats from "@/components/GithubUserStats.vue";

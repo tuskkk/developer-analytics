@@ -3,7 +3,6 @@ import { GITHUB_USER_DETAILS_QUERY } from "~/graphql/queries/githubUserDetailsQu
 export const useSearchGithubUser = async (login: string) => {
   if (!login.trim()) return;
 
-  console.log("HANDLE SEARCH", login);
   const { $apollo } = useNuxtApp();
   const store = useGithubUserDetailsStore();
 
@@ -20,14 +19,7 @@ export const useSearchGithubUser = async (login: string) => {
       return data.user;
     },
   );
-
-  watchEffect(() => {
-    store.setUser(data.value);
-    store.setLoading(pending.value);
-    store.setError(error.value);
-
-    navigateTo({
-      path: `/githubUser/${login.trim()}/`,
-    });
-  });
+  store.setUser(data.value);
+  store.setLoading(pending.value);
+  store.setError(error.value);
 };

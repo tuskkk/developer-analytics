@@ -20,8 +20,15 @@ const { isBig = false } = defineProps<Props>();
 
 const login = ref("");
 
+// const githubUserDetailsStore = useGithubUserDetailsStore();
+// const { user } = storeToRefs(githubUserDetailsStore);
+
 const handleSearch = () => {
-  console.log("HANDLE SEARCH", login.value);
-  useSearchGithubUser(login.value);
+  // currently hidden, as user data are needed no sooner as after navigating to the user page
+  // useSearchGithubUser(login.value);
+
+  navigateTo({
+    path: `/githubUser/${login.value?.trim()}/`,
+  });
 };
 </script>

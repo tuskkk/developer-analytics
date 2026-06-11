@@ -40,7 +40,9 @@ const bannerClasses = computed(() => {
         is-navbar-minimal
         class="absolute top-0 left-0 z-20 w-full bg-transparent"
       />
-      <slot name="content" />
+      <AppContainer>
+        <slot name="content" />
+      </AppContainer>
     </div>
   </div>
   <template v-else>

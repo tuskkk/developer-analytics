@@ -15,11 +15,10 @@ export const useSearchGithubUser = async (login: string) => {
           login: login.trim(),
         },
       });
-
       return data.user;
     },
   );
   store.setUser(data.value);
-  store.setLoading(pending.value);
   store.setError(error.value);
+  store.setLoading(pending.value);
 };

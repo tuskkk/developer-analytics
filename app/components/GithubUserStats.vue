@@ -1,6 +1,6 @@
 <template>
   <div
-    class="flex flex-wrap items-center justify-center gap-8 text-sm mb-10 lg:absolute lg:top-3.5 lg:left-36 lg:mb-0"
+    class="flex flex-wrap items-center justify-center gap-8 text-sm mb-4 lg:absolute lg:top-3.5 lg:left-36 lg:mb-0"
   >
     <div
       class="flex flex-col items-center text-sm text-secondaryText tracking-wide"
@@ -30,7 +30,7 @@
     </div>
   </div>
   <div
-    class="flex flex-wrap items-center justify-center gap-8 text-sm mb-10 lg:absolute lg:top-3.5 lg:right-36 lg:mb-0"
+    class="flex flex-wrap items-center justify-center gap-8 text-sm mb-4 lg:absolute lg:top-3.5 lg:right-36 lg:mb-0"
   >
     <div
       class="flex flex-col items-center text-sm text-secondaryText tracking-wide"

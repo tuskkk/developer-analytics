@@ -1,12 +1,21 @@
 <template>
-  <section v-if="user?.repositories.nodes.length" class="mb-16">
+  <section class="mb-16">
     <h2 class="mb-4 text-3xl tracking-tight text-primaryText">
-      Top repositories
+      {{
+        dataType === "repositories" ? "Top repositories" : "Featured projects"
+      }}
     </h2>
 
-    <div class="grid gap-4 md:grid-cols-2">
+    <div
+      class="grid gap-4"
+      :class="[
+        dataType === 'repositories'
+          ? 'md:grid-cols-2'
+          : 'md:gap-3 md:grid-cols-3',
+      ]"
+    >
       <article
-        v-for="repository in user.repositories.nodes"
+        v-for="repository in user?.[dataType]?.nodes ?? []"
         :key="repository.id"
         class="rounded-xl border border-tertiary bg-white p-5"
       >
@@ -53,6 +62,7 @@
         </div>
 
         <div
+          v-if="repository.updatedAt && dataType === 'repositories'"
           class="mt-4 border-t border-tertiary pt-4 text-sm text-primaryText"
         >
           Updated
@@ -71,4 +81,6 @@ import { Star, GitFork, Circle } from "@lucide/vue";
 const githubUserDetailsStore = useGithubUserDetailsStore();
 
 const { user } = storeToRefs(githubUserDetailsStore);
+
+defineProps<{ dataType: "repositories" | "pinnedItems" }>();
 </script>

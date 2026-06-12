@@ -1,18 +1,20 @@
 <template>
-  <h2 class="mb-4 text-3xl tracking-tight text-primaryText">
-    Tech stack analytics
-  </h2>
-  <article
-    v-if="areThereRepositories && areThereLanguages"
-    class="mx-auto max-w-2xl rounded-lg bg-white py-3.5 px-4 border rounded-lg shadow-lg"
-  >
-    <ClientOnly>
-      <DonutChart :options="options" :series="series" unit="%" />
-    </ClientOnly>
-  </article>
-  <p v-else class="text-secondaryText">
-    No repositories with languages found for this user.
-  </p>
+  <section class="mb-16">
+    <h2 class="mb-4 text-3xl tracking-tight text-primaryText">
+      Tech stack analytics
+    </h2>
+    <article
+      v-if="areThereRepositories && areThereLanguages"
+      class="mx-auto max-w-2xl rounded-lg bg-white py-3.5 px-4 border rounded-lg shadow-lg"
+    >
+      <ClientOnly>
+        <DonutChart :options="options" :series="series" unit="%" />
+      </ClientOnly>
+    </article>
+    <p v-else class="text-secondaryText">
+      No repositories with languages found for this user.
+    </p>
+  </section>
 </template>
 
 <script setup lang="ts">

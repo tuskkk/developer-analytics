@@ -45,6 +45,10 @@ interface GithubUser {
     totalCount: number;
   };
 
+  pinnedItems: {
+    nodes: GithubRepository[];
+  };
+
   repositories: {
     totalCount: number;
     nodes: GithubRepository[];

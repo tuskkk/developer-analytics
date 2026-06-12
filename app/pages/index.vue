@@ -8,7 +8,7 @@ const searchQuery = defineModel<string>({
 });
 </script>
 <template>
-  <AppPage is-navbar-minimal banner-image="landing" show-banner-mask>
+  <AppPage is-navbar-minimal banner-image="landing" show-dark-banner-mask>
     <template #content>
       <div
         class="relative w-full min-h-screen mb-6 flex flex-col items-center justify-start z-10 text-center text-white px-2 pt-32 md:px-[30px] md:pt-56"

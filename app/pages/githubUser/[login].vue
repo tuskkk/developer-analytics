@@ -50,19 +50,19 @@ if (shouldFetchUser.value) {
         </div>
         <div
           v-else-if="loading"
-          class="w-full h-screen flex items-center justify-center"
+          class="relative w-full h-screen flex items-center justify-center z-10"
         >
           <AppLoader />
         </div>
         <div
           v-else-if="login && isUserEmpty"
-          class="w-full h-screen flex items-center justify-center text-lg font-semibold text-secondary"
+          class="relative w-full h-screen flex items-start justify-start text-2xl text-secondary tracking-widest pt-24 z-10"
         >
           No user found with login "{{ login }}"
         </div>
         <div
           v-else-if="error"
-          class="w-full h-screen flex items-center justify-center text-alert"
+          class="relative w-full h-screen flex items-center justify-center text-alert z-10"
         >
           Error occurred while fetching user data: {{ error }}
         </div>

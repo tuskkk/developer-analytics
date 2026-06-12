@@ -51,6 +51,9 @@
       <GithubUserRepositories />
       <GithubUserTechStack />
     </section>
+    <p v-else class="text-center text-secondaryText mb-4">
+      This user has no public repositories.
+    </p>
   </article>
 </template>
 

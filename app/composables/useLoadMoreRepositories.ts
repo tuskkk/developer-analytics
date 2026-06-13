@@ -1,6 +1,10 @@
 import { GITHUB_USER_REPOSITORIES_QUERY } from "~/graphql/queries/githubUserRepositoriesQuery";
 
-export const useLoadMoreRepositories = async (login: string, first: number, after: string | null) => {
+export const useLoadMoreRepositories = async (
+  login: string,
+  first: number,
+  after: string | null,
+) => {
   if (!login.trim()) return;
 
   const { $apollo } = useNuxtApp();

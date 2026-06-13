@@ -1,13 +1,5 @@
 <template>
-  <apexchart
-    type="donut"
-    :options="{
-      ...baseOptions,
-      labels: options,
-      tooltip: { y: { formatter: unitFormatter },
-    } }"
-    :series="series"
-  />
+  <apexchart type="donut" :options="chartOptions" :series="series" />
 </template>
 
 <script setup lang="ts">
@@ -17,6 +9,16 @@ const props = defineProps<{
   series: number[] | string[];
   unit?: string;
 }>();
+
+const chartOptions = computed(() => ({
+  ...baseOptions,
+  labels: props.options,
+  tooltip: {
+    y: {
+      formatter: unitFormatter,
+    },
+  },
+}));
 
 const unitFormatter = (value: number) => {
   if (!props.unit) {

@@ -16,11 +16,15 @@ export const useGithubUserDetailsStore = defineStore(
     const setUser = (userData: GithubUser | null) => {
       user.value = userData;
     };
-    const setRepositories = (repositoriesData: GithubUser["repositories"] | null) => {
+    const setRepositories = (
+      repositoriesData: GithubUser["repositories"] | null,
+    ) => {
       if (user.value && repositoriesData) {
         console.log(111, user.value.repositories);
         const repos = user.value.repositories;
-        user.value.repositories.nodes = repos.nodes.concat(repositoriesData.nodes);
+        user.value.repositories.nodes = repos.nodes.concat(
+          repositoriesData.nodes,
+        );
         user.value.repositories.totalCount = repositoriesData.totalCount;
         user.value.repositories.pageInfo = repositoriesData.pageInfo;
         console.log(222, user.value.repositories);
@@ -35,15 +39,21 @@ export const useGithubUserDetailsStore = defineStore(
     const setError = (errorState: NuxtError<unknown> | undefined) => {
       error.value = errorState;
     };
-    const setRepositoriesError = (errorState: NuxtError<unknown> | undefined) => {
+    const setRepositoriesError = (
+      errorState: NuxtError<unknown> | undefined,
+    ) => {
       repositoriesError.value = errorState;
     };
     const setRepositoriesCount = (newRepositoriesCount: number) => {
       repositoriesCount.value = newRepositoriesCount;
     };
 
-    const showLoadMoreButton = computed(() => user.value?.repositories.pageInfo.hasNextPage && !repositoriesLoading.value && !repositoriesError.value);
-
+    const showLoadMoreButton = computed(
+      () =>
+        user.value?.repositories.pageInfo.hasNextPage &&
+        !repositoriesLoading.value &&
+        !repositoriesError.value,
+    );
 
     return {
       user,

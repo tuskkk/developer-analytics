@@ -73,14 +73,17 @@
         </li>
       </ul>
     </div>
-    <section v-if="user?.repositories.nodes.length" class="mb-16 flex flex-col items-center">
+    <section
+      v-if="user?.repositories.nodes.length"
+      class="mb-16 flex flex-col items-center"
+    >
       <GithubUserRepositories data-type="pinnedItems" />
       <GithubUserTechStack />
       <GithubUserRepositories data-type="repositories" />
       <button
         v-if="showLoadMoreButton"
-        @click="loadMoreRepositories"
         class="px-5 py-3.5 mb-4 bg-white text-secondary rounded shadow-lg border border-tertiary uppercase hover:bg-secondary hover:text-white transition-colors"
+        @click="loadMoreRepositories"
       >
         Load More
       </button>
@@ -112,7 +115,8 @@ import GithubUserTechStack from "@/components/GithubUserTechStack.vue";
 
 const githubUserDetailsStore = useGithubUserDetailsStore();
 
-const { user, repositoriesLoading, repositoriesError, showLoadMoreButton } = storeToRefs(githubUserDetailsStore);
+const { user, repositoriesLoading, repositoriesError, showLoadMoreButton } =
+  storeToRefs(githubUserDetailsStore);
 
 const loadMoreRepositories = () => {
   const login = user.value?.login as string;
@@ -121,5 +125,5 @@ const loadMoreRepositories = () => {
 
   githubUserDetailsStore.setRepositoriesLoading(true);
   useLoadMoreRepositories(login, first, after);
-}
+};
 </script>

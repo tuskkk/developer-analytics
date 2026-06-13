@@ -1,5 +1,5 @@
 export const REPOSITORY_FRAGMENT = gql`
-fragment RepositoryFragment on Repository {
+  fragment RepositoryFragment on Repository {
     id
     name
     description
@@ -25,4 +25,4 @@ fragment RepositoryFragment on Repository {
       }
     }
   }
-`
+`;

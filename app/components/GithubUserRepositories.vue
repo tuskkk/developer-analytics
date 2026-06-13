@@ -1,7 +1,12 @@
 <template>
   <section
     class="tracking-wide"
-    :class="[dataType === 'repositories' && (showLoadMoreButton || repositoriesLoading || repositoriesError) ? 'mb-8' : 'mb-16']"
+    :class="[
+      dataType === 'repositories' &&
+      (showLoadMoreButton || repositoriesLoading || repositoriesError)
+        ? 'mb-8'
+        : 'mb-16',
+    ]"
   >
     <h2 class="mb-4 text-3xl tracking-tight text-primaryText">
       {{
@@ -83,7 +88,8 @@ import { Star, GitFork, Circle } from "@lucide/vue";
 
 const githubUserDetailsStore = useGithubUserDetailsStore();
 
-const { user, showLoadMoreButton, repositoriesLoading, repositoriesError } = storeToRefs(githubUserDetailsStore);
+const { user, showLoadMoreButton, repositoriesLoading, repositoriesError } =
+  storeToRefs(githubUserDetailsStore);
 
 defineProps<{ dataType: "repositories" | "pinnedItems" }>();
 </script>

@@ -1,5 +1,5 @@
 <template>
-  <section class="mb-16">
+  <section class="mb-16 tracking-wide">
     <h2 class="mb-4 text-3xl tracking-tight text-primaryText">
       {{
         dataType === "repositories" ? "Top repositories" : "Featured projects"

@@ -1,12 +1,13 @@
 <template>
   <apexchart
     type="donut"
-    :options="{ labels: options, tooltip: { y: { formatter: unitFormatter } } }"
+    :options="{ ...baseOptions, labels: options, tooltip: { y: { formatter: unitFormatter } } }"
     :series="series"
   />
 </template>
 
 <script setup lang="ts">
+const baseOptions = useApexChartOptions();
 const props = defineProps<{
   options: number[] | string[];
   series: number[] | string[];

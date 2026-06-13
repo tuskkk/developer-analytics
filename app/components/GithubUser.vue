@@ -45,13 +45,13 @@
     <div
       class="flex-1 items-center text-center pt-4 text-base border-t border-tertiary lg:text-lg"
     >
-      <p v-if="user.bio" class="mb-4 text-primaryText">
+      <p v-if="user.bio" class="mb-4 text-primaryText tracking-wide">
         {{ user.bio }}
       </p>
     </div>
     <div
       v-if="user?.organizations.nodes.length"
-      class="flex flex-col justify-center items-center mb-4 text-center text-base text-primaryText lg:text-lg"
+      class="flex flex-col justify-center items-center mb-4 text-center text-base text-primaryText tracking-wider lg:text-lg"
     >
       Organizations:
       <ul class="flex flex-wrap items-center justify-center gap-5 pt-4">

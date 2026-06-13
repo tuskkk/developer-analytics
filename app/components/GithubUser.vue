@@ -49,6 +49,30 @@
         {{ user.bio }}
       </p>
     </div>
+    <div
+      v-if="user?.organizations.nodes.length"
+      class="flex flex-col justify-center items-center mb-4 text-center text-base text-primaryText lg:text-lg"
+    >
+      Organizations:
+      <ul class="flex flex-wrap items-center justify-center gap-5 pt-4">
+        <li v-for="org in user.organizations.nodes" :key="org.login">
+          <!-- todo: replace link text with tooltip -->
+          <a
+            :href="org.url"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="flex items-center gap-2 justify-center text-sm text-blue-600 hover:underline"
+          >
+            <img
+              :src="org.avatarUrl"
+              :alt="`${org.login} avatar`"
+              class="w-12 h-12 rounded-full object-cover"
+            />
+            <span class="hidden lg:block">{{ org.name || org.login }}</span>
+          </a>
+        </li>
+      </ul>
+    </div>
     <section v-if="user?.repositories.nodes.length" class="mb-16">
       <GithubUserRepositories data-type="pinnedItems" />
       <GithubUserTechStack />

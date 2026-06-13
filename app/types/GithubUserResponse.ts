@@ -28,6 +28,14 @@ interface GithubRepository {
   };
 }
 
+interface GithubOrganization {
+  login: string;
+  name: string | null;
+  avatarUrl: string;
+  url: string;
+  description: string | null;
+}
+
 interface GithubUser {
   login: string;
   name: string | null;
@@ -43,6 +51,10 @@ interface GithubUser {
 
   following: {
     totalCount: number;
+  };
+
+  organizations: {
+    nodes: GithubOrganization[];
   };
 
   pinnedItems: {

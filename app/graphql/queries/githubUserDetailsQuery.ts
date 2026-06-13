@@ -18,6 +18,16 @@ export const GITHUB_USER_DETAILS_QUERY = gql`
         totalCount
       }
 
+      organizations(first: 20) {
+        nodes {
+          login
+          name
+          avatarUrl
+          url
+          description
+        }
+      }
+
       pinnedItems(first: 6) {
         nodes {
           ... on Repository {

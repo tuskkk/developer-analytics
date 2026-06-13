@@ -1,7 +1,11 @@
 <template>
   <apexchart
     type="donut"
-    :options="{ ...baseOptions, labels: options, tooltip: { y: { formatter: unitFormatter } } }"
+    :options="{
+      ...baseOptions,
+      labels: options,
+      tooltip: { y: { formatter: unitFormatter },
+    } }"
     :series="series"
   />
 </template>

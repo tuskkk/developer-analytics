@@ -64,6 +64,10 @@ interface GithubUser {
   repositories: {
     totalCount: number;
     nodes: GithubRepository[];
+    pageInfo: {
+      hasNextPage: boolean;
+      endCursor: string | null;
+    }
   };
 }
 

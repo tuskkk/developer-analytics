@@ -73,10 +73,29 @@
         </li>
       </ul>
     </div>
-    <section v-if="user?.repositories.nodes.length" class="mb-16">
+    <section v-if="user?.repositories.nodes.length" class="mb-16 flex flex-col items-center">
       <GithubUserRepositories data-type="pinnedItems" />
       <GithubUserTechStack />
       <GithubUserRepositories data-type="repositories" />
+      <button
+        v-if="showLoadMoreButton"
+        @click="loadMoreRepositories"
+        class="px-5 py-3.5 mb-4 bg-white text-secondary rounded shadow-lg border border-tertiary uppercase hover:bg-secondary hover:text-white transition-colors"
+      >
+        Load More
+      </button>
+      <div
+        v-else-if="repositoriesLoading"
+        class="relative w-full h-14 mb-4 flex items-center justify-center z-10"
+      >
+        <AppLoader />
+      </div>
+      <div
+        v-else-if="repositoriesError"
+        class="relative w-full h-14 mb-4 flex items-center justify-center text-alert z-10"
+      >
+        Error occurred while fetching user data: {{ repositoriesError }}
+      </div>
     </section>
     <p v-else class="text-center text-secondaryText mb-4">
       This user has no public repositories.
@@ -93,5 +112,14 @@ import GithubUserTechStack from "@/components/GithubUserTechStack.vue";
 
 const githubUserDetailsStore = useGithubUserDetailsStore();
 
-const { user } = storeToRefs(githubUserDetailsStore);
+const { user, repositoriesLoading, repositoriesError, showLoadMoreButton } = storeToRefs(githubUserDetailsStore);
+
+const loadMoreRepositories = () => {
+  const login = user.value?.login as string;
+  const first = 20;
+  const after = user.value?.repositories.pageInfo.endCursor as string;
+
+  githubUserDetailsStore.setRepositoriesLoading(true);
+  useLoadMoreRepositories(login, first, after);
+}
 </script>

@@ -1,5 +1,5 @@
 <template>
-  <div class="flex items-center justify-center gap-2 py-4" aria-label="Loading">
+  <div class="flex items-center justify-center gap-2" aria-label="Loading">
     <div
       class="h-3 w-3 rounded-full bg-secondary animate-bounce"
       style="animation-delay: 0ms"

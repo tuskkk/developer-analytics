@@ -1,3 +1,5 @@
+import { REPOSITORY_FRAGMENT } from "../fragments/repositoryFragment";
+
 export const GITHUB_USER_DETAILS_QUERY = gql`
   query GithubUserDetails($login: String!) {
     user(login: $login) {
@@ -54,33 +56,16 @@ export const GITHUB_USER_DETAILS_QUERY = gql`
       ) {
         totalCount
 
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+
         nodes {
-          id
-          name
-          description
-          stargazerCount
-          forkCount
-          createdAt
-          updatedAt
-          diskUsage
-          url
-
-          primaryLanguage {
-            name
-            color
-          }
-
-          languages(first: 10) {
-            edges {
-              size
-              node {
-                name
-                color
-              }
-            }
-          }
+          ...RepositoryFragment
         }
       }
     }
   }
+  ${REPOSITORY_FRAGMENT}
 `;

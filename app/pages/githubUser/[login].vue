@@ -10,7 +10,7 @@ const login = computed(() => route.params.login as string);
 
 const githubUserDetailsStore = useGithubUserDetailsStore();
 const { user, loading, error } = storeToRefs(githubUserDetailsStore);
-const { setLoading } = githubUserDetailsStore;
+const { setLoading, fetchGithubUser } = githubUserDetailsStore;
 
 const isLoginFromCurrentUser = computed(
   () => user.value && user.value.login === login.value,
@@ -33,7 +33,7 @@ const isUserEmpty = computed(() => {
 
 if (shouldFetchUser.value) {
   setLoading(true);
-  useSearchGithubUser(login.value);
+  fetchGithubUser(login.value);
 }
 </script>
 

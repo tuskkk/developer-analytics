@@ -25,7 +25,7 @@ const login = ref("");
 
 const handleSearch = () => {
   // currently hidden, as user data are needed no sooner as after navigating to the user page
-  // useSearchGithubUser(login.value);
+  // fetchGithubUser(login.value);
 
   navigateTo({
     path: `/githubUser/${login.value?.trim()}/`,

@@ -2,6 +2,8 @@ import type { NuxtError } from "#app";
 import { defineStore } from "pinia";
 import { ref } from "vue";
 import type { GithubUser } from "~/types/GithubUserResponse";
+import { GITHUB_USER_DETAILS_QUERY } from "~/graphql/queries/githubUserDetailsQuery";
+import { GITHUB_USER_REPOSITORIES_QUERY } from "~/graphql/queries/githubUserRepositoriesQuery";
 
 export const useGithubUserDetailsStore = defineStore(
   "githubUserDetails",
@@ -10,24 +12,27 @@ export const useGithubUserDetailsStore = defineStore(
     const loading = ref<boolean>(false);
     const repositoriesLoading = ref<boolean>(false);
     const error = ref<NuxtError<unknown> | undefined>(undefined);
-    const repositoriesError = ref<NuxtError<unknown> | undefined>(undefined);
-    const repositoriesCount = ref(20);
+    const repositoriesError = ref<string | null>(null);
 
     const setUser = (userData: GithubUser | null) => {
-      user.value = userData;
+      user.value = userData ? structuredClone(userData) : null;
     };
     const setRepositories = (
       repositoriesData: GithubUser["repositories"] | null,
     ) => {
       if (user.value && repositoriesData) {
-        console.log(111, user.value.repositories);
-        const repos = user.value.repositories;
-        user.value.repositories.nodes = repos.nodes.concat(
-          repositoriesData.nodes,
-        );
-        user.value.repositories.totalCount = repositoriesData.totalCount;
-        user.value.repositories.pageInfo = repositoriesData.pageInfo;
-        console.log(222, user.value.repositories);
+        user.value = {
+          ...user.value,
+          repositories: {
+            ...user.value.repositories,
+            nodes: [
+              ...user.value.repositories.nodes,
+              ...repositoriesData.nodes,
+            ],
+            totalCount: repositoriesData.totalCount,
+            pageInfo: repositoriesData.pageInfo,
+          },
+        };
       }
     };
     const setLoading = (loadingState: boolean) => {
@@ -39,13 +44,69 @@ export const useGithubUserDetailsStore = defineStore(
     const setError = (errorState: NuxtError<unknown> | undefined) => {
       error.value = errorState;
     };
-    const setRepositoriesError = (
-      errorState: NuxtError<unknown> | undefined,
-    ) => {
+    const setRepositoriesError = (errorState: string | null) => {
       repositoriesError.value = errorState;
     };
-    const setRepositoriesCount = (newRepositoriesCount: number) => {
-      repositoriesCount.value = newRepositoriesCount;
+
+    const fetchGithubUser = async (login: string) => {
+      if (!login.trim()) return;
+
+      const { $apollo } = useNuxtApp();
+      resetUserErrors();
+
+      const { data, pending, error } = await useAsyncData(
+        () => `github-user-${login.trim()}`,
+        async () => {
+          const { data } = await $apollo.defaultClient.query({
+            query: GITHUB_USER_DETAILS_QUERY,
+            variables: {
+              login: login.trim(),
+            },
+          });
+          return data.user;
+        },
+      );
+      setUser(data.value);
+      setError(error.value);
+      setLoading(pending.value);
+    };
+
+    const fetchMoreRepositories = async (
+      login: string,
+      first: number,
+      after: string | null,
+    ) => {
+      if (!login.trim()) return;
+
+      const { $apollo } = useNuxtApp();
+
+      try {
+        setRepositoriesLoading(true);
+        setRepositoriesError(null);
+
+        const { data } = await $apollo.defaultClient.query({
+          query: GITHUB_USER_REPOSITORIES_QUERY,
+          variables: {
+            login: login.trim(),
+            first,
+            after,
+          },
+          fetchPolicy: "network-only",
+        });
+
+        setRepositories(data.user.repositories);
+      } catch (error: unknown) {
+        setRepositoriesError(
+          error instanceof Error ? error.message : String(error),
+        );
+      } finally {
+        setRepositoriesLoading(false);
+      }
+    };
+
+    const resetUserErrors = () => {
+      setError(undefined);
+      setRepositoriesError(null);
     };
 
     const showLoadMoreButton = computed(
@@ -67,9 +128,9 @@ export const useGithubUserDetailsStore = defineStore(
       repositoriesLoading,
       error,
       repositoriesError,
-      repositoriesCount,
-      setRepositoriesCount,
       showLoadMoreButton,
+      fetchGithubUser,
+      fetchMoreRepositories,
     };
   },
 );

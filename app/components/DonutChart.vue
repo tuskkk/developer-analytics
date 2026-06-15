@@ -1,5 +1,10 @@
 <template>
-  <apexchart type="donut" :options="chartOptions" :series="series" />
+  <apexchart
+    v-if="series.length"
+    type="donut"
+    :options="chartOptions"
+    :series="series"
+  />
 </template>
 
 <script setup lang="ts">

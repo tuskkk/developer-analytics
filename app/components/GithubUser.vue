@@ -77,7 +77,10 @@
       v-if="user?.repositories.nodes.length"
       class="mb-16 flex flex-col items-center"
     >
-      <GithubUserRepositories data-type="pinnedItems" />
+      <GithubUserRepositories
+        v-if="user?.pinnedItems.nodes.length"
+        data-type="pinnedItems"
+      />
       <GithubUserTechStack />
       <GithubUserRepositories data-type="repositories" />
       <button
@@ -117,13 +120,15 @@ const githubUserDetailsStore = useGithubUserDetailsStore();
 
 const { user, repositoriesLoading, repositoriesError, showLoadMoreButton } =
   storeToRefs(githubUserDetailsStore);
+const { setRepositoriesLoading, fetchMoreRepositories } =
+  githubUserDetailsStore;
 
 const loadMoreRepositories = () => {
   const login = user.value?.login as string;
   const first = 20;
   const after = user.value?.repositories.pageInfo.endCursor as string;
 
-  githubUserDetailsStore.setRepositoriesLoading(true);
-  useLoadMoreRepositories(login, first, after);
+  setRepositoriesLoading(true);
+  fetchMoreRepositories(login, first, after);
 };
 </script>

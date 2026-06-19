@@ -1,3 +1,5 @@
+import type { GithubUserBasic } from "./GithubUserSearchResponse.ts"
+
 interface GithubLanguage {
   name: string;
   color: string | null;
@@ -36,13 +38,8 @@ interface GithubOrganization {
   description: string | null;
 }
 
-interface GithubUser {
-  login: string;
-  name: string | null;
-  avatarUrl: string;
+interface GithubUser extends GithubUserBasic {
   bio: string | null;
-  company: string | null;
-  location: string | null;
   url: string | null;
 
   followers: {

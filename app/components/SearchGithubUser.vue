@@ -1,9 +1,10 @@
 <template>
-  <form @submit.prevent="handleSearch">
+  <form @submit.prevent="handleNavigate">
     <SearchBar
       v-model="login"
       :is-big="isBig"
       placeholder="Enter GitHub username..."
+      @input="handleSearch"
     />
   </form>
 </template>
@@ -11,6 +12,7 @@
 <script setup lang="ts">
 import { ref } from "vue";
 import SearchBar from "@/components/SearchBar.vue";
+import { useGithubUserSearchStore } from "~/stores/githubUserSearch";
 
 interface Props {
   isBig?: boolean;
@@ -20,13 +22,18 @@ const { isBig = false } = defineProps<Props>();
 
 const login = ref("");
 
-// const githubUserDetailsStore = useGithubUserDetailsStore();
-// const { user } = storeToRefs(githubUserDetailsStore);
+const githubUserSearchStore = useGithubUserSearchStore();
+//const { suggestions, error } = storeToRefs(githubUserSearchStore);
+const { searchGithubUsers } = githubUserSearchStore;
 
 const handleSearch = () => {
-  // currently hidden, as user data are needed no sooner as after navigating to the user page
-  // fetchGithubUser(login.value);
+  if (login.value.length < 3) {
+    return;
+  }
+  searchGithubUsers(login.value);
+};
 
+const handleNavigate = () => {
   navigateTo({
     path: `/githubUser/${login.value?.trim()}/`,
   });

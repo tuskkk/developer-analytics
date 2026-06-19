@@ -1,14 +1,11 @@
 import { REPOSITORY_FRAGMENT } from "../fragments/repositoryFragment";
+import { USER_FRAGMENT } from "../fragments/userFragment";
 
 export const GITHUB_USER_DETAILS_QUERY = gql`
   query GithubUserDetails($login: String!) {
     user(login: $login) {
-      login
-      name
-      avatarUrl
+      ...UserFragment
       bio
-      company
-      location
       websiteUrl
       url
 
@@ -67,5 +64,6 @@ export const GITHUB_USER_DETAILS_QUERY = gql`
       }
     }
   }
+  ${USER_FRAGMENT}  
   ${REPOSITORY_FRAGMENT}
 `;

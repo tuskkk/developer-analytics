@@ -17,6 +17,7 @@ export default {
         tertiary: '#9CA3AF',
         primaryText: '#111928',
         secondaryText: '#6B7280',
+        secondaryLight: '#C084FC',
         stroke: '#F9FAFB',
         alert: '#FF0000',
         white: '#FFFFFF',

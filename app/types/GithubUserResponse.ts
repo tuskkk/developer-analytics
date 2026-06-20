@@ -1,4 +1,4 @@
-import type { GithubUserBasic } from "./GithubUserSearchResponse.ts"
+import type { GithubUserBasic } from "./GithubUserSearchResponse"
 
 interface GithubLanguage {
   name: string;

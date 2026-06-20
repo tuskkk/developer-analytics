@@ -23,7 +23,7 @@ const searchQuery = defineModel<string>({
         </p>
         <SearchGithubUser
           v-model="searchQuery"
-          class="h-10 w-full max-w-80 mx-auto mb-6"
+          class="relative h-10 w-full max-w-80 mx-auto mb-6"
           is-big
         />
       </div>

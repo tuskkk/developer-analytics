@@ -64,6 +64,6 @@ export const GITHUB_USER_DETAILS_QUERY = gql`
       }
     }
   }
-  ${USER_FRAGMENT}  
+  ${USER_FRAGMENT}
   ${REPOSITORY_FRAGMENT}
 `;

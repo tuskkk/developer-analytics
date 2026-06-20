@@ -1,6 +1,6 @@
 interface GithubUserBasic {
   login: string;
-  name: string | null;
+  name?: string | null;
   avatarUrl: string;
   company: string | null;
   location: string | null;

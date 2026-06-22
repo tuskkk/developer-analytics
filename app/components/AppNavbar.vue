@@ -1,13 +1,3 @@
-<script setup lang="ts">
-import AppLogo from "@/components/AppLogo.vue";
-
-interface Props {
-  isNavbarMinimal?: boolean;
-}
-
-const { isNavbarMinimal = false } = defineProps<Props>();
-</script>
-
 <template>
   <header
     class="w-screen gap-2.5 top-0 z-50 bg-primary"
@@ -25,4 +15,12 @@ const { isNavbarMinimal = false } = defineProps<Props>();
   </header>
 </template>
 
-<style scoped></style>
+<script setup lang="ts">
+import AppLogo from "@/components/AppLogo.vue";
+
+interface Props {
+  isNavbarMinimal?: boolean;
+}
+
+const { isNavbarMinimal = false } = defineProps<Props>();
+</script>

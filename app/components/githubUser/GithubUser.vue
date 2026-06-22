@@ -25,10 +25,7 @@
 </template>
 
 <script setup lang="ts">
-import { useGithubUserDetailsStore } from "~/stores/githubUserDetails";
-import GithubUserCard from "@/components/GithubUserCard.vue";
-import GithubUserOrganizations from "@/components/GithubUserOrganizations.vue";
-import GithubUserProjects from "@/components/GithubUserProjects.vue";
+import { useGithubUserDetailsStore } from "@/stores/githubUserDetails";
 
 const githubUserDetailsStore = useGithubUserDetailsStore();
 

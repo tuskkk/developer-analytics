@@ -18,7 +18,6 @@
 
 <script setup lang="ts">
 import { ref } from "vue";
-import SearchBar from "@/components/SearchBar.vue";
 import type { GithubUserBasic } from "@/types/GithubUserSearchResponse";
 import { useGithubUserSearchStore } from "@/stores/githubUserSearch";
 

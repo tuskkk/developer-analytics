@@ -1,7 +1,4 @@
 <script setup lang="ts">
-import AppPage from "@/components/AppPage.vue";
-import SearchGithubUser from "@/components/SearchGithubUser.vue";
-
 // todo: replace with a value from the store
 const searchQuery = defineModel<string>({
   default: "",

@@ -20,7 +20,7 @@
         {{ user?.location }}
       </span>
     </div>
-    <div class="mb-8 lg:mb-0">
+    <div class="mb-8 lg:mb-4">
       <a
         v-if="user?.url"
         :href="user.url"
@@ -31,16 +31,28 @@
         {{ user.url }}
       </a>
     </div>
+    <AddToFavorites
+      :is-favorite="isUserFavorite(user?.login as string)"
+      :login="user?.login as string"
+      @toggle-favorites="toggleUserFavorites"
+    />
     <GithubUserStats />
   </div>
 </template>
 
 <script setup lang="ts">
-import { useGithubUserDetailsStore } from "~/stores/githubUserDetails";
+import { useGithubUserDetailsStore } from "@/stores/githubUserDetails";
+import { useFavoriteUsersStore } from "@/stores/favoriteUsers";
 import { MapPin, BriefcaseBusiness } from "@lucide/vue";
-import GithubUserStats from "@/components/GithubUserStats.vue";
+import AddToFavorites from "@/components/favorites/AddToFavorites.vue";
 
 const githubUserDetailsStore = useGithubUserDetailsStore();
+const { toggleFavorites, isUserFavorite } = useFavoriteUsersStore();
 
 const { user } = storeToRefs(githubUserDetailsStore);
+
+const toggleUserFavorites = (login: string) => {
+  console.log("toggle favorites", user.value?.login);
+  toggleFavorites(login);
+};
 </script>

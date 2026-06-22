@@ -1,4 +1,4 @@
-import type { GithubUserBasic } from "./GithubUserSearchResponse"
+import type { GithubUserBasic } from "./GithubUserSearchResponse";
 
 interface GithubLanguage {
   name: string;
@@ -64,7 +64,7 @@ interface GithubUser extends GithubUserBasic {
     pageInfo: {
       hasNextPage: boolean;
       endCursor: string | null;
-    }
+    };
   };
 }
 

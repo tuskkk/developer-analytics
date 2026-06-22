@@ -30,8 +30,6 @@
 
 <script setup lang="ts">
 import { useGithubUserDetailsStore } from "~/stores/githubUserDetails";
-import GithubUserRepositories from "@/components/GithubUserRepositories.vue";
-import GithubUserTechStack from "@/components/GithubUserTechStack.vue";
 
 const githubUserDetailsStore = useGithubUserDetailsStore();
 

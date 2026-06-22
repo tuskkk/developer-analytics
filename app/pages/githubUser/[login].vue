@@ -1,8 +1,39 @@
+<template>
+  <AppPage is-navbar-minimal banner-image="developer">
+    <template #content>
+      <Transition
+        enter-active-class="transition-all duration-500 ease-in-out"
+        enter-from-class="opacity-0 translate-y-8 scale-65"
+        enter-to-class="opacity-100 translate-y-0 scale-100"
+      >
+        <div v-if="isUserShown" class="w-full pt-32">
+          <GithubUser />
+        </div>
+        <div
+          v-else-if="loading"
+          class="relative w-full h-screen flex items-center justify-center z-10"
+        >
+          <AppLoader />
+        </div>
+        <div
+          v-else-if="login && isUserEmpty"
+          class="relative w-full h-screen flex items-start justify-start text-2xl text-secondary tracking-widest pt-24 z-10"
+        >
+          No user found with login "{{ login }}"
+        </div>
+        <div
+          v-else-if="error"
+          class="relative w-full h-screen flex items-center justify-center text-alert z-10"
+        >
+          Error occurred while fetching user data: {{ error }}
+        </div>
+      </Transition>
+    </template>
+  </AppPage>
+</template>
+
 <script setup lang="ts">
 import { computed } from "vue";
-import AppPage from "@/components/AppPage.vue";
-import AppLoader from "@/components/AppLoader.vue";
-import GithubUser from "@/components/GithubUser.vue";
 
 const route = useRoute();
 
@@ -36,39 +67,3 @@ if (shouldFetchUser.value) {
   fetchGithubUser(login.value);
 }
 </script>
-
-<template>
-  <AppPage is-navbar-minimal banner-image="developer">
-    <template #content>
-      <Transition
-        enter-active-class="transition-all duration-500 ease-in-out"
-        enter-from-class="opacity-0 translate-y-8 scale-65"
-        enter-to-class="opacity-100 translate-y-0 scale-100"
-      >
-        <div v-if="isUserShown" class="w-full pt-32 lg:pt-56">
-          <GithubUser />
-        </div>
-        <div
-          v-else-if="loading"
-          class="relative w-full h-screen flex items-center justify-center z-10"
-        >
-          <AppLoader />
-        </div>
-        <div
-          v-else-if="login && isUserEmpty"
-          class="relative w-full h-screen flex items-start justify-start text-2xl text-secondary tracking-widest pt-24 z-10"
-        >
-          No user found with login "{{ login }}"
-        </div>
-        <div
-          v-else-if="error"
-          class="relative w-full h-screen flex items-center justify-center text-alert z-10"
-        >
-          Error occurred while fetching user data: {{ error }}
-        </div>
-      </Transition>
-    </template>
-  </AppPage>
-</template>
-
-<style scoped></style>

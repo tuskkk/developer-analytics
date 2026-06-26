@@ -31,10 +31,7 @@
 </template>
 
 <script setup lang="ts">
-import { storeToRefs } from "pinia";
-import { useFavoriteUsersStore } from "@/stores/favoriteUsers";
-
-const favoriteUsersStore = useFavoriteUsersStore();
-const { favoriteUsers } = storeToRefs(favoriteUsersStore);
-const { toggleFavorites, isUserFavorite } = favoriteUsersStore;
+import { useFavoriteGithubUsers } from "@/composables/useFavoriteGithubUsers";
+const { toggleFavorites, isUserFavorite, favoriteUsers } =
+  useFavoriteGithubUsers();
 </script>

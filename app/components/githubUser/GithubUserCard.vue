@@ -41,18 +41,18 @@
 </template>
 
 <script setup lang="ts">
+import { storeToRefs } from "pinia";
 import { useGithubUserDetailsStore } from "@/stores/githubUserDetails";
-import { useFavoriteUsersStore } from "@/stores/favoriteUsers";
 import { MapPin, BriefcaseBusiness } from "@lucide/vue";
+import { useFavoriteGithubUsers } from "@/composables/useFavoriteGithubUsers";
 import AddToFavorites from "@/components/favorites/AddToFavorites.vue";
 
 const githubUserDetailsStore = useGithubUserDetailsStore();
-const { toggleFavorites, isUserFavorite } = useFavoriteUsersStore();
-
 const { user } = storeToRefs(githubUserDetailsStore);
 
+const { toggleFavorites, isUserFavorite } = useFavoriteGithubUsers();
+
 const toggleUserFavorites = (login: string) => {
-  console.log("toggle favorites", user.value?.login);
   toggleFavorites(login);
 };
 </script>

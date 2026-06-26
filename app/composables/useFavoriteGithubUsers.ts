@@ -1,8 +1,7 @@
-import { defineStore } from "pinia";
-import { ref } from "vue";
+import { useStorage } from "@vueuse/core";
 
-export const useFavoriteUsersStore = defineStore("favoriteUsers", () => {
-  const favoriteUsers = ref<string[]>([]);
+export const useFavoriteGithubUsers = () => {
+  const favoriteUsers = useStorage<string[]>("favorite-users", []);
 
   const addToFavorites = (login: string) => {
     favoriteUsers.value = [...favoriteUsers.value, login];
@@ -24,4 +23,4 @@ export const useFavoriteUsersStore = defineStore("favoriteUsers", () => {
     toggleFavorites,
     isUserFavorite,
   };
-});
+};

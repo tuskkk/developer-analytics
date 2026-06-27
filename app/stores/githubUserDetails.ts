@@ -54,7 +54,7 @@ export const useGithubUserDetailsStore = defineStore(
       const { $apollo } = useNuxtApp();
       resetUserErrors();
 
-      const { data, pending, error } = await useAsyncData(
+      const { data, error } = await useAsyncData(
         () => `github-user-${login.trim()}`,
         async () => {
           const { data } = await $apollo.defaultClient.query({
@@ -68,7 +68,7 @@ export const useGithubUserDetailsStore = defineStore(
       );
       setUser(data.value);
       setError(error.value);
-      setLoading(pending.value);
+      setLoading(false);
     };
 
     const fetchMoreRepositories = async (

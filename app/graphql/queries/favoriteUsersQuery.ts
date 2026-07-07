@@ -11,11 +11,10 @@ export const createFavoriteUsersQuery = (logins: string[]) => {
       `,
     )
     .join("\n");
-
   return gql`
     query FavoriteUsers {
-      ${usersQuery};
-    };
+      ${usersQuery}
+    }
 
     ${USER_FRAGMENT}
   `;

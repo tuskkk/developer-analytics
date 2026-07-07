@@ -28,7 +28,6 @@ export const useFavoriteUsersStore = defineStore("favoriteUsers", () => {
       const { data } = await $apollo.defaultClient.query({
         query: createFavoriteUsersQuery(logins),
       });
-      console.log(111, data);
       const users = Object.values(data).filter(
         (user): user is GithubUserBasic => user !== null,
       );

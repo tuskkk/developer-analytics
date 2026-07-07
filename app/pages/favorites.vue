@@ -49,7 +49,14 @@ const { fetchFavoriteUsersData } = favoriteUsersStore;
 
 const { toggleFavorites, isUserFavorite, favoriteUsers } =
   useFavoriteGithubUsers();
-if (favoriteUsers.value.length) {
-  fetchFavoriteUsersData(favoriteUsers.value);
-}
+
+watch(
+  favoriteUsers.value,
+  (users) => {
+    if (users.length) {
+      fetchFavoriteUsersData(users);
+    }
+  },
+  { immediate: true },
+);
 </script>

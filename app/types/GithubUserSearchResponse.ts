@@ -4,6 +4,6 @@ interface GithubUserBasic {
   avatarUrl: string;
   company: string | null;
   location: string | null;
-};
+}
 
 export type { GithubUserBasic };

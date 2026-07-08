@@ -1,5 +1,5 @@
 <template>
-  <li>
+  <li :class="{ 'mx-auto': isFullVersion }">
     <button
       class="flex w-full items-center text-left"
       :class="{
@@ -14,7 +14,9 @@
         :src="user.avatarUrl"
         :alt="user.login"
         class="rounded-full shadow-lg"
-        :class="[isFullVersion ? 'h-[120px] w-[120px]' : 'h-10 w-10']"
+        :class="[
+          isFullVersion ? 'h-24 w-24 md:h-[120px] md:w-[120px]' : 'h-10 w-10',
+        ]"
       />
       <div>
         <p

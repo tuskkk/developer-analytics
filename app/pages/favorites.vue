@@ -1,7 +1,7 @@
 <template>
   <AppPage :is-navbar-minimal="false">
-    <div class="w-full mx-auto px-4 py-32">
-      <h1 class="text-4xl text-primaryText mb-8 tracking-tight">
+    <div class="w-full mx-auto py-16 md:py-32">
+      <h1 class="text-2xl text-primaryText mb-8 tracking-tight md:text-4xl">
         Favorite GitHub Developers
       </h1>
       <div
@@ -16,7 +16,7 @@
       >
         No favorite developers yet.
       </div>
-      <ul v-else class="grid grid-cols-4 gap-7">
+      <ul v-else class="grid gap-4 md:grid-cols-3 lg:gap-7 lg:grid-cols-4">
         <NuxtLink
           v-for="user in favoriteUsersData"
           :key="user.login"
@@ -24,7 +24,7 @@
           class="flex-1 text-lg font-medium hover:text-secondary transition-colors"
         >
           <GithubUserInfo
-            class="flex items-center justify-between p-6 rounded-lg border border-tertiary bg-white shadow hover:bg-stroke transition-colors md:p-12"
+            class="flex items-center justify-between p-4 max-w-xs rounded-lg border border-tertiary bg-white shadow hover:bg-stroke transition-colors md:max-w-auto lg:p-12"
             :user="user"
             is-full-version
           >

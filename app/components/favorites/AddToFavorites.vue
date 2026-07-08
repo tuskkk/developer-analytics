@@ -1,7 +1,7 @@
 <template>
   <div
     class="flex items-center text-secondary tracking-wider text-sm mx-auto w-52 h-14 cursor-pointer"
-    @click="$emit('toggleFavorites', login)"
+    @click.prevent="$emit('toggleFavorites', login)"
   >
     <Heart
       class="mr-3 transition-all duration-300 ease-in-out"

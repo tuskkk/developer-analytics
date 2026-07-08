@@ -1,23 +1,32 @@
 <template>
   <li>
     <button
-      class="flex w-full items-center gap-3 px-4 py-3 text-left"
+      class="flex w-full items-center text-left"
       :class="{
-        'bg-primary': index === activeIndex,
-        'hover:bg-primary': index !== activeIndex,
+        'bg-primary': !isFullVersion && index === activeIndex,
+        'hover:bg-primary': !isFullVersion && index !== activeIndex,
+        'px-4 py-3 gap-3': !isFullVersion,
+        'flex-col text-center gap-6': isFullVersion,
       }"
       @click="$emit('select', user)"
     >
       <img
         :src="user.avatarUrl"
         :alt="user.login"
-        class="h-10 w-10 rounded-full"
+        class="rounded-full shadow-lg"
+        :class="[isFullVersion ? 'h-[120px] w-[120px]' : 'h-10 w-10']"
       />
       <div>
-        <slot />
-        <p v-if="user.name" class="text-sm text-primaryText">
+        <p
+          class="text-primaryText tracking-wider"
+          :class="{
+            'h-7 text-lg': isFullVersion,
+            'text-sm': !isFullVersion,
+          }"
+        >
           {{ user.name }}
         </p>
+        <slot />
       </div>
     </button>
   </li>
@@ -28,11 +37,16 @@ import type { GithubUserBasic } from "@/types/GithubUserSearchResponse";
 
 interface Props {
   user: GithubUserBasic;
+  isFullVersion?: boolean;
   index?: number;
   activeIndex?: number;
 }
 
-defineProps<Props>();
+const {
+  isFullVersion = false,
+  index = 0,
+  activeIndex = -1,
+} = defineProps<Props>();
 
 defineEmits<{ select: [user: GithubUserBasic] }>();
 </script>

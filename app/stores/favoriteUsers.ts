@@ -6,6 +6,7 @@ export const useFavoriteUsersStore = defineStore("favoriteUsers", () => {
   const favoriteUsersData = ref<GithubUserBasic[] | []>([]);
   const loading = ref<boolean>(false);
   const error = ref<string | null>(null);
+  const initialized = ref<boolean>(false);
 
   const setFavoriteUsersData = (usersData: GithubUserBasic[] | []) => {
     if (usersData) {
@@ -17,6 +18,9 @@ export const useFavoriteUsersStore = defineStore("favoriteUsers", () => {
   };
   const setError = (errorState: string | null) => {
     error.value = errorState;
+  };
+  const setInitialized = (initializedState: boolean) => {
+    initialized.value = initializedState;
   };
 
   const fetchFavoriteUsersData = async (logins: string[]) => {
@@ -36,6 +40,7 @@ export const useFavoriteUsersStore = defineStore("favoriteUsers", () => {
       setError(err instanceof Error ? err.message : "Unknown error");
     } finally {
       setLoading(false);
+      setInitialized(true);
     }
   };
 
@@ -43,6 +48,8 @@ export const useFavoriteUsersStore = defineStore("favoriteUsers", () => {
     favoriteUsersData,
     loading,
     error,
+    initialized,
     fetchFavoriteUsersData,
+    setFavoriteUsersData,
   };
 });

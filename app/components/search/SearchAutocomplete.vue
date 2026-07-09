@@ -1,24 +1,22 @@
 <template>
   <ul
     v-if="query.length > 3 && suggestions.length"
-    class="absolute top-full left-0 right-0 z-20 mt-2 overflow-hidden border border-primary rounded-2xl text-sm text-primaryText outline-none bg-white transition-colors hover:border-primaryText focus:border-primaryText"
+    class="absolute top-8 left-0 right-0 z-20 mt-2 overflow-hidden border border-primary rounded-2xl text-sm text-primaryText outline-none bg-white transition-colors hover:border-primaryText focus:border-primaryText"
   >
     <GithubUserInfo
       v-for="(user, index) in suggestions"
-      :key="user.login"
+      :key="`${user.login}-${index}`"
       :user="user"
       :index="index"
-      :activeIndex="activeIndex"
+      :active-index="activeIndex"
+      @select="$emit('select', user)"
     >
       <p class="font-medium">
         <template
           v-for="(part, partIndex) in getHighlightedParts(user.login)"
           :key="partIndex"
         >
-          <mark
-            v-if="part.highlighted"
-            class="rounded bg-secondary/50 px-0.5"
-          >
+          <mark v-if="part.highlighted" class="rounded bg-secondary/50 px-0.5">
             {{ part.text }}
           </mark>
 

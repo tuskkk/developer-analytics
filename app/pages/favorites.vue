@@ -1,6 +1,6 @@
 <template>
-  <AppPage :is-navbar-minimal="false">
-    <div class="w-full mx-auto py-16 md:py-32">
+  <AppPage>
+    <div class="relative w-full mx-auto py-16 md:py-32">
       <h1 class="text-2xl text-primaryText mb-8 tracking-tight md:text-4xl">
         Favorite GitHub Developers
       </h1>

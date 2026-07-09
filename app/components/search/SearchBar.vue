@@ -1,25 +1,3 @@
-<script setup lang="ts">
-import { Search, X } from "@lucide/vue";
-
-interface Props {
-  placeholder?: string;
-  isBig?: boolean;
-}
-
-const { isBig = false, placeholder = "Search developers..." } =
-  defineProps<Props>();
-
-const model = defineModel<string>({
-  default: "",
-});
-const inputRef = ref<HTMLInputElement>();
-
-const clearSearch = () => {
-  model.value = "";
-  inputRef.value?.focus();
-};
-</script>
-
 <template>
   <div class="relative h-full w-full">
     <Search
@@ -48,6 +26,28 @@ const clearSearch = () => {
     </button>
   </div>
 </template>
+
+<script setup lang="ts">
+import { Search, X } from "@lucide/vue";
+
+interface Props {
+  placeholder?: string;
+  isBig?: boolean;
+}
+
+const { isBig = false, placeholder = "Search developers..." } =
+  defineProps<Props>();
+
+const model = defineModel<string>({
+  default: "",
+});
+const inputRef = ref<HTMLInputElement>();
+
+const clearSearch = () => {
+  model.value = "";
+  inputRef.value?.focus();
+};
+</script>
 
 <style scoped>
 input[type="search"]::-webkit-search-cancel-button {

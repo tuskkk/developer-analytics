@@ -1,5 +1,5 @@
 <template>
-  <AppPage is-navbar-minimal banner-image="developer">
+  <AppPage banner-image="developer">
     <template #content>
       <Transition
         enter-active-class="transition-all duration-500 ease-in-out"
@@ -62,8 +62,14 @@ const isUserEmpty = computed(() => {
   return !name && !company && !location && !url && !bio;
 });
 
-if (shouldFetchUser.value) {
-  setLoading(true);
-  fetchGithubUser(login.value);
-}
+const fetchUserData = async () => {
+  if (shouldFetchUser.value) {
+    setLoading(true);
+    await fetchGithubUser(login.value);
+  }
+};
+
+onMounted(async () => fetchUserData());
+
+watch(login, async () => fetchUserData());
 </script>

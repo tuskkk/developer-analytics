@@ -30,7 +30,7 @@ const bannerClasses = computed(() => {
 </script>
 
 <template>
-  <div v-if="isNavbarMinimal" class="relative">
+  <div v-if="showDarkBannerMask || bannerImage" class="relative">
     <div
       v-if="showDarkBannerMask"
       class="absolute inset-0 bg-gradient-to-b from-black/80 to-black/0 z-0"
@@ -41,7 +41,7 @@ const bannerClasses = computed(() => {
     />
     <div :class="[bannerClasses, 'bg-cover max-h-screen z-10']">
       <AppNavbar
-        is-navbar-minimal
+        :is-navbar-minimal="isNavbarMinimal"
         class="absolute top-0 left-0 z-20 w-full bg-transparent"
       />
       <AppContainer>

@@ -1,5 +1,5 @@
 <template>
-  <form @submit.prevent="handleNavigate">
+  <form class="relative max-w-full" @submit.prevent="handleNavigate">
     <SearchBar
       v-model="login"
       :is-big="isBig"
@@ -8,6 +8,7 @@
       @keydown="handleKeydown"
     />
     <SearchAutocomplete
+      class="max-w-full"
       :query="login"
       :suggestions="suggestions"
       :active-index="activeIndex"
@@ -81,9 +82,10 @@ const handleSelect = (userData: GithubUserBasic) => {
   handleNavigate();
 };
 
-const handleNavigate = () => {
-  navigateTo({
+const handleNavigate = async () => {
+  await navigateTo({
     path: `/githubUser/${login.value?.trim()}/`,
   });
+  login.value = "";
 };
 </script>

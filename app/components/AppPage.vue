@@ -1,34 +1,3 @@
-<script setup lang="ts">
-import AppNavbar from "@/components/AppNavbar.vue";
-import AppFooter from "@/components/AppFooter.vue";
-import AppContainer from "@/components/AppContainer.vue";
-
-interface Props {
-  isNavbarMinimal?: boolean;
-  bannerImage?: string | null;
-  showDarkBannerMask?: boolean;
-}
-
-const {
-  isNavbarMinimal = false,
-  bannerImage = null,
-  showDarkBannerMask = false,
-} = defineProps<Props>();
-
-const bannerClasses = computed(() => {
-  switch (bannerImage) {
-    case "developer":
-      return "bg-top bg-no-repeat bg-developer-mobile md:bg-developer-desktop";
-
-    case "landing":
-      return "bg-center bg-landing-mobile md:bg-landing-desktop";
-
-    default:
-      return "";
-  }
-});
-</script>
-
 <template>
   <div v-if="showDarkBannerMask || bannerImage" class="relative">
     <div
@@ -57,3 +26,34 @@ const bannerClasses = computed(() => {
     <AppFooter />
   </AppContainer>
 </template>
+
+<script setup lang="ts">
+import AppNavbar from "@/components/navbar/AppNavbar.vue";
+import AppFooter from "@/components/AppFooter.vue";
+import AppContainer from "@/components/AppContainer.vue";
+
+interface Props {
+  isNavbarMinimal?: boolean;
+  bannerImage?: string | null;
+  showDarkBannerMask?: boolean;
+}
+
+const {
+  isNavbarMinimal = false,
+  bannerImage = null,
+  showDarkBannerMask = false,
+} = defineProps<Props>();
+
+const bannerClasses = computed(() => {
+  switch (bannerImage) {
+    case "developer":
+      return "bg-top bg-no-repeat bg-developer-mobile md:bg-developer-desktop";
+
+    case "landing":
+      return "bg-center bg-landing-mobile md:bg-landing-desktop";
+
+    default:
+      return "";
+  }
+});
+</script>

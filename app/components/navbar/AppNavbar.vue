@@ -7,10 +7,13 @@
       class="max-w-full px-2 mx-auto flex items-center justify-between gap-4 py-3 md:px-2.5 xl:max-w-layoutXl xl:px-0 2xl:max-w-layout2Xl"
     >
       <AppLogo class="max-w-28 md:max-w-40" />
-      <SearchGithubUser
-        v-if="!isNavbarMinimal"
-        class="h-8 w-full max-w-40 md:max-w-56"
-      />
+      <div class="flex items-center gap-4 md:gap-8">
+        <SearchGithubUser
+          v-if="!isNavbarMinimal"
+          class="h-8 w-full max-w-40 md:max-w-56"
+        />
+        <NavbarMenu :is-navbar-minimal="isNavbarMinimal" />
+      </div>
     </section>
   </header>
 </template>

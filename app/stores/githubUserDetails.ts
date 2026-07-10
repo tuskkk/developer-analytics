@@ -11,8 +11,9 @@ export const useGithubUserDetailsStore = defineStore(
     const user = ref<GithubUser | null>(null);
     const loading = ref<boolean>(false);
     const repositoriesLoading = ref<boolean>(false);
-    const error = ref<NuxtError<unknown> | undefined>(undefined);
+    const userError = ref<NuxtError<unknown> | undefined>(undefined);
     const repositoriesError = ref<string | null>(null);
+    const initialized = ref<boolean>(false);
 
     const setUser = (userData: GithubUser | null) => {
       user.value = userData ? structuredClone(userData) : null;
@@ -41,8 +42,8 @@ export const useGithubUserDetailsStore = defineStore(
     const setRepositoriesLoading = (loadingState: boolean) => {
       repositoriesLoading.value = loadingState;
     };
-    const setError = (errorState: NuxtError<unknown> | undefined) => {
-      error.value = errorState;
+    const setUserError = (errorState: NuxtError<unknown> | undefined) => {
+      userError.value = errorState;
     };
     const setRepositoriesError = (errorState: string | null) => {
       repositoriesError.value = errorState;
@@ -67,8 +68,12 @@ export const useGithubUserDetailsStore = defineStore(
         },
       );
       setUser(data.value);
-      setError(error.value);
+      setUserError(error.value);
       setLoading(false);
+      setInitialized(true);
+      if (!user.value) {
+        throwGithubUserError();
+      }
     };
 
     const fetchMoreRepositories = async (
@@ -96,17 +101,19 @@ export const useGithubUserDetailsStore = defineStore(
 
         setRepositories(data.user.repositories);
       } catch (error: unknown) {
-        setRepositoriesError(
-          error instanceof Error ? error.message : String(error),
-        );
+        setRepositoriesError(mapGithubErrorMessage(error));
       } finally {
         setRepositoriesLoading(false);
       }
     };
 
     const resetUserErrors = () => {
-      setError(undefined);
+      setUserError(undefined);
       setRepositoriesError(null);
+    };
+
+    const setInitialized = (initializedState: boolean) => {
+      initialized.value = initializedState;
     };
 
     const showLoadMoreButton = computed(
@@ -122,13 +129,14 @@ export const useGithubUserDetailsStore = defineStore(
       setRepositories,
       setLoading,
       setRepositoriesLoading,
-      setError,
+      setUserError,
       setRepositoriesError,
       loading,
       repositoriesLoading,
-      error,
+      userError,
       repositoriesError,
       showLoadMoreButton,
+      initialized,
       fetchGithubUser,
       fetchMoreRepositories,
     };

@@ -37,7 +37,7 @@ export const useFavoriteUsersStore = defineStore("favoriteUsers", () => {
       );
       setFavoriteUsersData(users);
     } catch (err: unknown) {
-      setError(err instanceof Error ? err.message : "Unknown error");
+      setError(mapGithubErrorMessage(err));
     } finally {
       setLoading(false);
       setInitialized(true);

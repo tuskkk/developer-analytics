@@ -6,26 +6,25 @@
         enter-from-class="opacity-0 translate-y-8 scale-65"
         enter-to-class="opacity-100 translate-y-0 scale-100"
       >
-        <div v-if="isUserShown" class="w-full pt-32">
-          <GithubUser />
-        </div>
+        <ErrorBanner
+          v-if="userError"
+          class="relative w-full h-14 flex z-10"
+          :message="userError.message"
+        />
         <div
-          v-else-if="loading"
+          v-else-if="!initialized || loading"
           class="relative w-full h-screen flex items-center justify-center z-10"
         >
           <AppLoader />
+        </div>
+        <div v-else-if="isUserShown" class="w-full pt-32">
+          <GithubUser />
         </div>
         <div
           v-else-if="login && isUserEmpty"
           class="relative w-full h-screen flex items-start justify-start text-2xl text-secondary tracking-widest pt-24 z-10"
         >
           No user found with login "{{ login }}"
-        </div>
-        <div
-          v-else-if="error"
-          class="relative w-full h-screen flex items-center justify-center text-alert z-10"
-        >
-          Error occurred while fetching user data: {{ error }}
         </div>
       </Transition>
     </template>
@@ -40,7 +39,9 @@ const route = useRoute();
 const login = computed(() => route.params.login as string);
 
 const githubUserDetailsStore = useGithubUserDetailsStore();
-const { user, loading, error } = storeToRefs(githubUserDetailsStore);
+const { user, loading, userError, initialized } = storeToRefs(
+  githubUserDetailsStore,
+);
 const { setLoading, fetchGithubUser } = githubUserDetailsStore;
 
 const isLoginFromCurrentUser = computed(

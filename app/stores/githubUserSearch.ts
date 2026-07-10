@@ -38,7 +38,7 @@ export const useGithubUserSearchStore = defineStore("githubUserSearch", () => {
       });
       setSuggestions(data.search.nodes);
     } catch (error: unknown) {
-      setError(error instanceof Error ? error.message : "Unknown error");
+      setError(mapGithubErrorMessage(error));
     } finally {
       setLoading(false);
     }

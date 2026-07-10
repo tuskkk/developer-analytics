@@ -4,8 +4,13 @@
       <h1 class="text-2xl text-primaryText mb-8 tracking-tight md:text-4xl">
         Favorite GitHub Developers
       </h1>
+      <ErrorBanner
+        v-if="error"
+        class="relative w-full h-14 flex z-10"
+        :message="error"
+      />
       <div
-        v-if="!initialized || loading"
+        v-else-if="!initialized || loading"
         class="relative w-full h-screen flex items-center justify-center z-10"
       >
         <AppLoader />
@@ -49,7 +54,7 @@ const { toggleFavorites, isUserFavorite, favoriteUsers } =
   useFavoriteGithubUsers();
 
 const favoriteUsersStore = useFavoriteUsersStore();
-const { favoriteUsersData, loading, initialized } =
+const { favoriteUsersData, loading, initialized, error } =
   storeToRefs(favoriteUsersStore);
 const { fetchFavoriteUsersData, setFavoriteUsersData } = favoriteUsersStore;
 

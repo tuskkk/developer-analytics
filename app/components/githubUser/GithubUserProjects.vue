@@ -19,12 +19,11 @@
     >
       <AppLoader />
     </div>
-    <div
+    <ErrorBanner
       v-else-if="repositoriesError"
-      class="relative w-full h-14 mb-4 flex items-center justify-center text-alert z-10"
-    >
-      Error occurred while fetching user data: {{ repositoriesError }}
-    </div>
+      class="relative w-full h-14 mb-4 z-10"
+      :message="repositoriesError"
+    />
   </section>
 </template>
 

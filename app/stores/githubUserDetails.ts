@@ -87,7 +87,6 @@ export const useGithubUserDetailsStore = defineStore(
       try {
         setRepositoriesLoading(true);
         setRepositoriesError(null);
-
         const { data } = await $apollo.defaultClient.query({
           query: GITHUB_USER_REPOSITORIES_QUERY,
           variables: {
@@ -97,7 +96,6 @@ export const useGithubUserDetailsStore = defineStore(
           },
           fetchPolicy: "network-only",
         });
-
         setRepositories(data.user.repositories);
       } catch (error: unknown) {
         setRepositoriesError(mapGithubErrorMessage(error));
@@ -118,8 +116,7 @@ export const useGithubUserDetailsStore = defineStore(
     const showLoadMoreButton = computed(
       () =>
         user.value?.repositories.pageInfo.hasNextPage &&
-        !repositoriesLoading.value &&
-        !repositoriesError.value,
+        !repositoriesLoading.value,
     );
 
     return {

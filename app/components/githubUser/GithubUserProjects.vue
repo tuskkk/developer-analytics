@@ -20,7 +20,7 @@
       <AppLoader />
     </div>
     <ErrorBanner
-      v-else-if="repositoriesError"
+      v-if="repositoriesError"
       class="relative w-full h-14 mb-4 z-10"
       :message="repositoriesError"
     />

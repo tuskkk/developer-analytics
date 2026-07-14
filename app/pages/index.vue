@@ -1,9 +1,3 @@
-<script setup lang="ts">
-// todo: replace with a value from the store
-const searchQuery = defineModel<string>({
-  default: "",
-});
-</script>
 <template>
   <AppPage is-navbar-minimal banner-image="landing" show-dark-banner-mask>
     <template #content>
@@ -23,7 +17,22 @@ const searchQuery = defineModel<string>({
           class="relative h-10 w-full max-w-sm mx-auto mb-6"
           is-big
         />
+        <ErrorBanner
+          v-if="error"
+          class="relative w-full h-14 max-w-sm mx-auto flex z-10"
+          :message="error"
+        />
       </div>
     </template>
   </AppPage>
 </template>
+
+<script setup lang="ts">
+// todo: replace with a value from the store
+const searchQuery = defineModel<string>({
+  default: "",
+});
+
+const githubUserSearchStore = useGithubUserSearchStore();
+const { error } = storeToRefs(githubUserSearchStore);
+</script>

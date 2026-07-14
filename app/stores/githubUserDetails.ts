@@ -1,4 +1,3 @@
-import type { NuxtError } from "#app";
 import { defineStore } from "pinia";
 import { ref } from "vue";
 import type { GithubUser } from "~/types/GithubUserResponse";
@@ -11,7 +10,7 @@ export const useGithubUserDetailsStore = defineStore(
     const user = ref<GithubUser | null>(null);
     const loading = ref<boolean>(false);
     const repositoriesLoading = ref<boolean>(false);
-    const userError = ref<NuxtError<unknown> | undefined>(undefined);
+    const userError = ref<string | null>(null);
     const repositoriesError = ref<string | null>(null);
     const initialized = ref<boolean>(false);
 
@@ -42,7 +41,7 @@ export const useGithubUserDetailsStore = defineStore(
     const setRepositoriesLoading = (loadingState: boolean) => {
       repositoriesLoading.value = loadingState;
     };
-    const setUserError = (errorState: NuxtError<unknown> | undefined) => {
+    const setUserError = (errorState: string | null) => {
       userError.value = errorState;
     };
     const setRepositoriesError = (errorState: string | null) => {
@@ -55,24 +54,24 @@ export const useGithubUserDetailsStore = defineStore(
       const { $apollo } = useNuxtApp();
       resetUserErrors();
 
-      const { data, error } = await useAsyncData(
-        () => `github-user-${login.trim()}`,
-        async () => {
-          const { data } = await $apollo.defaultClient.query({
-            query: GITHUB_USER_DETAILS_QUERY,
-            variables: {
-              login: login.trim(),
-            },
-          });
-          return data.user;
-        },
-      );
-      setUser(data.value);
-      setUserError(error.value);
-      setLoading(false);
-      setInitialized(true);
-      if (!user.value) {
-        throwGithubUserError();
+      try {
+        const { data } = await $apollo.defaultClient.query({
+          query: GITHUB_USER_DETAILS_QUERY,
+          variables: {
+            login: login.trim(),
+          },
+        });
+
+        if (!data.user) {
+          throwGithubUserError();
+          return;
+        }
+        setUser(data.user);
+      } catch (err: unknown) {
+        setUserError(mapGithubErrorMessage(err));
+      } finally {
+        setLoading(false);
+        setInitialized(true);
       }
     };
 
@@ -108,7 +107,7 @@ export const useGithubUserDetailsStore = defineStore(
     };
 
     const resetUserErrors = () => {
-      setUserError(undefined);
+      setUserError(null);
       setRepositoriesError(null);
     };
 

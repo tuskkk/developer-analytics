@@ -51,6 +51,7 @@ export const useGithubUserSearchStore = defineStore("githubUserSearch", () => {
   return {
     suggestions,
     loading,
+    error,
     searchGithubUsers,
   };
 });

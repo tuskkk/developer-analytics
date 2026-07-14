@@ -6,11 +6,12 @@
         enter-from-class="opacity-0 translate-y-8 scale-65"
         enter-to-class="opacity-100 translate-y-0 scale-100"
       >
-        <ErrorBanner
-          v-if="userError"
-          class="relative w-full h-14 flex z-10"
-          :message="userError.message"
-        />
+        <div v-if="userError" class="w-full h-screen pt-32">
+          <ErrorBanner
+            class="relative w-full h-14 flex z-10"
+            :message="userError"
+          />
+        </div>
         <div
           v-else-if="!initialized || loading"
           class="relative w-full h-screen flex items-center justify-center z-10"

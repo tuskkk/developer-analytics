@@ -1,6 +1,6 @@
 <template>
   <header
-    class="w-screen gap-2.5 top-0 z-50 bg-primary"
+    class="gap-2.5 top-0 z-50 bg-primary"
     :class="[isNavbarMinimal ? 'bg-transparent' : 'bg-primary']"
   >
     <section

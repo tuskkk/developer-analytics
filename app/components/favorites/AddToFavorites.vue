@@ -1,6 +1,6 @@
 <template>
   <div
-    class="flex items-center text-secondary tracking-wider text-sm mx-auto w-52 h-14 cursor-pointer"
+    class="flex items-center text-secondary tracking-wider text-sm mx-auto w-52 h-14 cursor-pointer hover:text-primaryText transition-colors duration-200"
     @click.prevent="$emit('toggleFavorites', login)"
   >
     <Heart

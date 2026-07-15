@@ -4,9 +4,13 @@
       <li v-for="item in navigation" :key="item.to">
         <NuxtLink
           :to="item.to"
-          class="text-primaryText tracking-wider transition-colors duration-200 hover:text-secondary"
+          class="text-primaryText tracking-wider transition-colors duration-200"
           active-class="text-secondary font-semibold"
-          :class="[isNavbarMinimal ? 'text-white' : 'text-secondary']"
+          :class="[
+            isNavbarMinimal
+              ? 'text-white hover:text-secondary'
+              : 'text-secondary hover:text-primaryText',
+            ]"
         >
           {{ item.label }}
         </NuxtLink>

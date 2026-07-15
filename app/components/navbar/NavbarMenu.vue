@@ -10,7 +10,7 @@
             isNavbarMinimal
               ? 'text-white hover:text-secondary'
               : 'text-secondary hover:text-primaryText',
-            ]"
+          ]"
         >
           {{ item.label }}
         </NuxtLink>

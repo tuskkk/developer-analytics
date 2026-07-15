@@ -1,30 +1,42 @@
 <template>
-  <div v-if="showDarkBannerMask || bannerImage" class="relative">
+  <div>
     <div
-      v-if="showDarkBannerMask"
-      class="absolute inset-0 bg-gradient-to-b from-black/80 to-black/0 z-0"
-    />
-    <div
-      v-else-if="bannerImage"
-      class="absolute inset-0 bg-gradient-to-b from-white/60 via-white/0 to-white z-0"
-    />
-    <div :class="[bannerClasses, 'bg-cover max-h-screen z-10']">
-      <AppNavbar
-        :is-navbar-minimal="isNavbarMinimal"
-        class="absolute top-0 left-0 z-20 w-full bg-transparent"
+      v-if="isLandingPage || bannerImage"
+      class="relative overflow-hidden flex-1"
+    >
+      <div
+        v-if="isLandingPage"
+        class="absolute inset-0 bg-gradient-to-b from-black/80 to-black/0 z-10"
       />
-      <AppContainer>
-        <slot name="content" />
-      </AppContainer>
+      <div
+        v-else-if="bannerImage"
+        class="absolute inset-0 bg-gradient-to-b from-white/60 via-white/0 to-white z-10"
+      />
+      <div
+        :class="[
+          bannerClasses,
+          'absolute inset-0 bg-cover bg-center bg-no-repeat z-0',
+        ]"
+      />
+      <div class="relative z-20 flex h-full flex-col justify-between">
+        <AppNavbar
+          :is-navbar-minimal="isNavbarMinimal"
+          class="absolute top-0 left-0 z-30 w-full bg-transparent"
+        />
+        <AppContainer>
+          <slot name="content" />
+          <AppFooter v-if="isLandingPage" :is-transparent="true" />
+        </AppContainer>
+      </div>
     </div>
+    <template v-else>
+      <AppNavbar :is-navbar-minimal="isNavbarMinimal" />
+    </template>
+    <AppContainer v-if="!isLandingPage">
+      <slot />
+      <AppFooter />
+    </AppContainer>
   </div>
-  <template v-else>
-    <AppNavbar :is-navbar-minimal="isNavbarMinimal" />
-  </template>
-  <AppContainer>
-    <slot />
-    <AppFooter />
-  </AppContainer>
 </template>
 
 <script setup lang="ts">
@@ -35,13 +47,13 @@ import AppContainer from "@/components/AppContainer.vue";
 interface Props {
   isNavbarMinimal?: boolean;
   bannerImage?: string | null;
-  showDarkBannerMask?: boolean;
+  isLandingPage?: boolean;
 }
 
 const {
   isNavbarMinimal = false,
   bannerImage = null,
-  showDarkBannerMask = false,
+  isLandingPage = false,
 } = defineProps<Props>();
 
 const bannerClasses = computed(() => {

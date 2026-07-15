@@ -1,8 +1,13 @@
 <template>
-  <AppPage is-navbar-minimal banner-image="landing" show-dark-banner-mask>
+  <AppPage
+    class="relative h-screen flex flex-col"
+    :is-navbar-minimal="true"
+    banner-image="landing"
+    :is-landing-page="true"
+  >
     <template #content>
       <div
-        class="relative w-full min-h-screen mb-6 flex flex-col items-center justify-start z-10 text-center text-white px-2 pt-32 md:px-[30px] md:pt-56"
+        class="mb-6 min-h-[calc(100vh-260px)] flex flex-col items-center justify-start text-center text-white px-2 pt-32 md:px-[30px] md:pt-56 md:min-h-[calc(100vh-164px)]"
       >
         <h1 class="text-2xl mb-4 md:text-5xl md:mb-6">
           Track developer trends <br class="md:hidden" />in one place.
@@ -15,7 +20,7 @@
         <SearchGithubUser
           v-model="searchQuery"
           class="relative h-10 w-full max-w-sm mx-auto mb-6"
-          is-big
+          :is-big="true"
         />
         <ErrorBanner
           v-if="error"

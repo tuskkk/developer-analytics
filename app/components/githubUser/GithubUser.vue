@@ -26,6 +26,7 @@
 
 <script setup lang="ts">
 import { useGithubUserDetailsStore } from "@/stores/githubUserDetails";
+import GithubUserProjects from "@/components/repositories/GithubUserProjects.vue";
 
 const githubUserDetailsStore = useGithubUserDetailsStore();
 

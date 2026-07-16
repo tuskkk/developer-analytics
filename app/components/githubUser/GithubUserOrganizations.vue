@@ -1,6 +1,6 @@
 <template>
   <div
-    class="flex flex-col justify-center items-center mb-4 text-center text-base text-primaryText tracking-wider lg:text-lg"
+    class="flex flex-col justify-center items-center mb-12 text-center text-base text-primaryText tracking-wider lg:text-lg"
   >
     Organizations:
     <ul class="flex flex-wrap items-center justify-center gap-5 pt-4">

@@ -45,7 +45,7 @@
           {{ repository.description }}
         </p>
 
-        <div class="flex flex-wrap gap-4 text-sm text-secondaryText">
+        <div class="mb-4 flex flex-wrap gap-4 text-sm text-secondaryText">
           <div class="flex items-center gap-1">
             <Star :size="16" />
             {{ repository.stargazerCount }}
@@ -71,8 +71,9 @@
 
         <div
           v-if="repository.updatedAt && dataType === 'repositories'"
-          class="mt-4 border-t border-tertiary pt-4 text-sm text-primaryText"
+          class="flex items-center gap-2 border-t border-tertiary pt-4 text-sm text-primaryText"
         >
+          <CalendarDays :size="20" />
           Updated
           {{ new Date(repository.updatedAt).toLocaleDateString() }}
         </div>
@@ -84,7 +85,7 @@
 <script setup lang="ts">
 import { storeToRefs } from "pinia";
 import { useGithubUserDetailsStore } from "~/stores/githubUserDetails";
-import { Star, GitFork, Circle } from "@lucide/vue";
+import { Star, GitFork, Circle, CalendarDays } from "@lucide/vue";
 
 const githubUserDetailsStore = useGithubUserDetailsStore();
 

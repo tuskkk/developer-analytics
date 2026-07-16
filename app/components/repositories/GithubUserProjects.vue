@@ -1,5 +1,6 @@
 <template>
   <section class="mb-16 flex flex-col items-center">
+    <MostStarredRepository />
     <GithubUserRepositories
       v-if="user?.pinnedItems.nodes.length"
       data-type="pinnedItems"
@@ -28,7 +29,9 @@
 </template>
 
 <script setup lang="ts">
-import { useGithubUserDetailsStore } from "~/stores/githubUserDetails";
+import { useGithubUserDetailsStore } from "@/stores/githubUserDetails";
+import GithubUserRepositories from "@/components/repositories/GithubUserRepositories.vue";
+import MostStarredRepository from "@/components/repositories/MostStarredRepository.vue";
 
 const githubUserDetailsStore = useGithubUserDetailsStore();
 

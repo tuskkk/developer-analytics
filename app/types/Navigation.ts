@@ -1,6 +1,6 @@
 interface NavigationItem {
-  label: string
-  to: string
+  label: string;
+  to: string;
 }
 
 export type { NavigationItem };

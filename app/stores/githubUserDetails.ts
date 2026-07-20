@@ -1,8 +1,6 @@
 import { defineStore } from "pinia";
 import { ref } from "vue";
-import type { GithubUser } from "~/types/GithubUserResponse";
-import { GITHUB_USER_DETAILS_QUERY } from "~/graphql/queries/githubUserDetailsQuery";
-import { GITHUB_USER_REPOSITORIES_QUERY } from "~/graphql/queries/githubUserRepositoriesQuery";
+import type { GithubUser } from "@/types/GithubUserResponse";
 
 export const useGithubUserDetailsStore = defineStore(
   "githubUserDetails",
@@ -49,24 +47,21 @@ export const useGithubUserDetailsStore = defineStore(
     };
 
     const fetchGithubUser = async (login: string) => {
-      if (!login.trim()) return;
+      const trimmedLogin = login.trim();
 
-      const { $apollo } = useNuxtApp();
+      if (!trimmedLogin) return;
       resetUserErrors();
 
       try {
-        const { data } = await $apollo.defaultClient.query({
-          query: GITHUB_USER_DETAILS_QUERY,
-          variables: {
-            login: login.trim(),
-          },
-        });
+        const user = await $fetch<GithubUser>(
+          `/api/github/user/${encodeURIComponent(trimmedLogin)}`,
+        );
 
-        if (!data.user) {
+        if (!user) {
           throwGithubUserError();
           return;
         }
-        setUser(data.user);
+        setUser(user);
       } catch (err: unknown) {
         setUserError(mapGithubErrorMessage(err));
       } finally {
@@ -82,21 +77,14 @@ export const useGithubUserDetailsStore = defineStore(
     ) => {
       if (!login.trim()) return;
 
-      const { $apollo } = useNuxtApp();
-
       try {
         setRepositoriesLoading(true);
         setRepositoriesError(null);
-        const { data } = await $apollo.defaultClient.query({
-          query: GITHUB_USER_REPOSITORIES_QUERY,
-          variables: {
-            login: login.trim(),
-            first,
-            after,
-          },
-          fetchPolicy: "network-only",
-        });
-        setRepositories(data.user.repositories);
+        const repos = await $fetch<GithubUser["repositories"]>(
+          `/api/github/user/${encodeURIComponent(login.trim())}/repositories`,
+          { query: { first, after } },
+        );
+        setRepositories(repos);
       } catch (error: unknown) {
         setRepositoriesError(mapGithubErrorMessage(error));
       } finally {

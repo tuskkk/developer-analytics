@@ -20,18 +20,16 @@
     >
       <AppLoader />
     </div>
-    <ErrorBanner
-      v-if="repositoriesError"
-      class="relative w-full h-14 mb-4 z-10"
-      :message="repositoriesError"
-    />
   </section>
 </template>
 
 <script setup lang="ts">
+import { useToast, POSITION } from "vue-toastification";
 import { useGithubUserDetailsStore } from "@/stores/githubUserDetails";
 import GithubUserRepositories from "@/components/repositories/GithubUserRepositories.vue";
 import MostStarredRepository from "@/components/repositories/MostStarredRepository.vue";
+
+const toast = useToast();
 
 const githubUserDetailsStore = useGithubUserDetailsStore();
 
@@ -48,4 +46,21 @@ const loadMoreRepositories = () => {
   setRepositoriesLoading(true);
   fetchMoreRepositories(login, first, after);
 };
+
+watch(repositoriesError, (err) => {
+  if (err) {
+    toast.error(err, {
+      position: POSITION.BOTTOM_RIGHT,
+      timeout: 5000,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      showCloseButtonOnHover: false,
+      hideProgressBar: false,
+      closeButton: "button",
+      icon: true,
+      rtl: false
+    });
+  }
+});
 </script>

@@ -36,7 +36,7 @@
             <AddToFavorites
               :login="user.login"
               :is-favorite="isUserFavorite(user.login)"
-              @toggle-favorites="toggleFavorites(user.login)"
+              @toggle-favorites="removeFromFavorites(user.login)"
             />
           </GithubUserInfo>
         </NuxtLink>
@@ -46,9 +46,12 @@
 </template>
 
 <script setup lang="ts">
+import { useToast, POSITION } from "vue-toastification";
 import AddToFavorites from "@/components/favorites/AddToFavorites.vue";
 import { useFavoriteGithubUsers } from "@/composables/useFavoriteGithubUsers";
 import { useFavoriteUsersStore } from "#imports";
+
+const toast = useToast();
 
 const { toggleFavorites, isUserFavorite, favoriteUsers } =
   useFavoriteGithubUsers();
@@ -71,4 +74,20 @@ watch(favoriteUsers, async (users) => {
   }
   await fetchFavoriteUsersData(users);
 });
+
+const removeFromFavorites = (login: string) => {
+  toast.info(`${login} is removed from favorites`, {
+    position: POSITION.BOTTOM_RIGHT,
+    timeout: 5000,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    showCloseButtonOnHover: false,
+    hideProgressBar: false,
+    closeButton: "button",
+    icon: true,
+    rtl: false,
+  });
+  toggleFavorites(login);
+};
 </script>

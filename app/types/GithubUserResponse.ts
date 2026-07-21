@@ -69,7 +69,15 @@ interface GithubUser extends GithubUserBasic {
 }
 
 interface GithubUserResponse {
-  user: GithubUser | null;
+  data: {
+    user: GithubUser | null;
+  };
 }
 
-export type { GithubUser, GithubRepository, GithubUserResponse };
+interface RepositoriesQueryVariables {
+  login: string,
+  first: number,
+  after?: string | null,
+}
+
+export type { GithubUser, GithubRepository, GithubUserResponse, RepositoriesQueryVariables };

@@ -1,4 +1,4 @@
-export const REPOSITORY_FRAGMENT = gql`
+export const REPOSITORY_FRAGMENT = `
   fragment RepositoryFragment on Repository {
     id
     name

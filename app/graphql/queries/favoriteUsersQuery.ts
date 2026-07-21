@@ -1,4 +1,3 @@
-import { gql } from "@apollo/client/core";
 import { USER_FRAGMENT } from "@/graphql/fragments/userFragment";
 
 export const createFavoriteUsersQuery = (logins: string[]) => {
@@ -11,7 +10,7 @@ export const createFavoriteUsersQuery = (logins: string[]) => {
       `,
     )
     .join("\n");
-  return gql`
+  return `
     query FavoriteUsers {
       ${usersQuery}
     }

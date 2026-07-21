@@ -1,4 +1,4 @@
-export const USER_FRAGMENT = gql`
+export const USER_FRAGMENT = `
   fragment UserFragment on User {
     login
     name

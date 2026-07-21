@@ -1,7 +1,6 @@
 import { defineStore } from "pinia";
 import { ref } from "vue";
 import type { GithubUserBasic } from "~/types/GithubUserSearchResponse";
-import { SEARCH_GITHUB_USERS_QUERY } from "~/graphql/queries/searchGithubUsers";
 
 export const useGithubUserSearchStore = defineStore("githubUserSearch", () => {
   const suggestions = ref<GithubUserBasic[] | []>([]);
@@ -21,22 +20,15 @@ export const useGithubUserSearchStore = defineStore("githubUserSearch", () => {
   const searchGithubUsers = async (query: string) => {
     if (!query.trim()) return;
 
-    const { $apollo } = useNuxtApp();
-
     try {
       setLoading(true);
       resetError();
 
-      const { data } = await $apollo.defaultClient.query({
-        query: SEARCH_GITHUB_USERS_QUERY,
-        variables: {
-          query: query.trim(),
-          type: "USER",
-          first: 5,
-        },
-        fetchPolicy: "network-only",
-      });
-      setSuggestions(data.search.nodes);
+      const suggestions = await $fetch<GithubUserBasic[]>(
+        `/api/github/search/${encodeURIComponent(query.trim())}`,
+        { query: { type: "USER", first: 5 } },
+      );
+      setSuggestions(suggestions);
     } catch (error: unknown) {
       setError(mapGithubErrorMessage(error));
     } finally {

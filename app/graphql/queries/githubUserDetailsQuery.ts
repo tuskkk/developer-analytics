@@ -1,7 +1,7 @@
 import { REPOSITORY_FRAGMENT } from "../fragments/repositoryFragment";
 import { USER_FRAGMENT } from "../fragments/userFragment";
 
-export const GITHUB_USER_DETAILS_QUERY = gql`
+export const GITHUB_USER_DETAILS_QUERY = `
   query GithubUserDetails($login: String!) {
     user(login: $login) {
       ...UserFragment

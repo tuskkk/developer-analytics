@@ -12,25 +12,11 @@ export default defineNuxtConfig({
     "@nuxt/image",
     "@nuxt/scripts",
     "@nuxt/test-utils",
-    "@nuxtjs/apollo",
     "@nuxtjs/eslint-module",
     "@pinia/colada-nuxt",
     "@pinia/nuxt",
     "@nuxtjs/tailwindcss",
   ],
-  apollo: {
-    clients: {
-      default: {
-        httpEndpoint: "https://api.github.com/graphql",
-        tokenName: "github-token",
-        httpLinkOptions: {
-          headers: {
-            authorization: `Bearer ${process.env.GITHUB_TOKEN}`,
-          },
-        },
-      },
-    },
-  },
   vite: {
     optimizeDeps: {
       include: [

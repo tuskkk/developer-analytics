@@ -1,6 +1,5 @@
 import { defineStore } from "pinia";
 import type { GithubUserBasic } from "@/types/GithubUserSearchResponse";
-import { createFavoriteUsersQuery } from "@/graphql/queries/favoriteUsersQuery";
 
 export const useFavoriteUsersStore = defineStore("favoriteUsers", () => {
   const favoriteUsersData = ref<GithubUserBasic[] | []>([]);
@@ -24,17 +23,16 @@ export const useFavoriteUsersStore = defineStore("favoriteUsers", () => {
   };
 
   const fetchFavoriteUsersData = async (logins: string[]) => {
-    const { $apollo } = useNuxtApp();
     setLoading(true);
     setError(null);
 
     try {
-      const { data } = await $apollo.defaultClient.query({
-        query: createFavoriteUsersQuery(logins),
+      const users = await $fetch<GithubUserBasic[]>("/api/github/favorites", {
+        method: "POST",
+        body: {
+          logins,
+        },
       });
-      const users = Object.values(data).filter(
-        (user): user is GithubUserBasic => user !== null,
-      );
       setFavoriteUsersData(users);
     } catch (err: unknown) {
       setError(mapGithubErrorMessage(err));

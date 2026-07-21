@@ -1,6 +1,6 @@
 import { REPOSITORY_FRAGMENT } from "../fragments/repositoryFragment";
 
-export const GITHUB_USER_REPOSITORIES_QUERY = gql`
+export const GITHUB_USER_REPOSITORIES_QUERY = `
   query GithubUserRepositories($login: String!, $first: Int!, $after: String) {
     user(login: $login) {
       repositories(

@@ -77,7 +77,7 @@ interface GithubUserResponse {
 interface RepositoriesQueryVariables {
   login: string,
   first: number,
-  after: string | null,
+  after?: string | null,
 }
 
 export type { GithubUser, GithubRepository, GithubUserResponse, RepositoriesQueryVariables };

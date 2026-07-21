@@ -6,4 +6,18 @@ interface GithubUserBasic {
   location: string | null;
 }
 
-export type { GithubUserBasic };
+interface SearchUsersQueryVariables {
+  query: string,
+  type: string | null,
+  first: number,
+}
+
+interface SearchUserResponse {
+  data: {
+    search: {
+      nodes: (GithubUserBasic | null)[];
+    };
+  };
+}
+
+export type { GithubUserBasic, SearchUsersQueryVariables, SearchUserResponse };

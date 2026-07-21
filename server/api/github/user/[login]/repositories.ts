@@ -17,7 +17,7 @@ export default defineEventHandler(async (event) => {
     { 
       login,
       first: Number(first),
-      after:typeof after === 'string' ? after : null,
+      after: typeof after === 'string' ? after : null,
     },
     config.githubToken);
 });

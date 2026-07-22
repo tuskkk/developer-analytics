@@ -51,6 +51,11 @@ import AddToFavorites from "@/components/favorites/AddToFavorites.vue";
 import { useFavoriteGithubUsers } from "@/composables/useFavoriteGithubUsers";
 import { useFavoriteUsersStore } from "#imports";
 
+useSeoMeta({
+  title: "Favorite Users",
+  description: "Your saved GitHub developers.",
+});
+
 const toast = useToast();
 
 const { toggleFavorites, isUserFavorite, favoriteUsers } =

@@ -33,6 +33,12 @@
 </template>
 
 <script setup lang="ts">
+useSeoMeta({
+  title: "GitHub Developer Analytics",
+  description:
+    "Search GitHub developers, analyze repositories, stars, languages and activity.",
+});
+
 // todo: replace with a value from the store
 const searchQuery = defineModel<string>({
   default: "",

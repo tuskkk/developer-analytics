@@ -22,6 +22,10 @@
 <script setup lang="ts">
 import type { NuxtError } from "#app";
 
+useSeoMeta({
+  title: "Error",
+});
+
 defineProps<{
   error: NuxtError;
 }>();

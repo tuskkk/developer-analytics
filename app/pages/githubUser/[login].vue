@@ -45,6 +45,15 @@ const { user, loading, userError, initialized } = storeToRefs(
 );
 const { setLoading, fetchGithubUser } = githubUserDetailsStore;
 
+useSeoMeta({
+  title: () =>
+    user.value?.name
+      ? `${user.value.name} (@${user.value.login})`
+      : (user.value?.login ?? "GitHub User"),
+  description: () =>
+    user.value?.bio ?? `GitHub profile of ${user.value?.login}`,
+});
+
 const isLoginFromCurrentUser = computed(
   () => user.value && user.value.login === login.value,
 );

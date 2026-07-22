@@ -5,7 +5,7 @@
   >
     <div class="flex items-center justify-between mb-6">
       <h2 class="text-2xl md:text-3xl">Most Starred Repository</h2>
-      <Star class="text-secondary" :size="32" />
+      <Star class="text-secondary ml-4" :size="32" />
     </div>
     <div class="space-y-6 tracking-wide">
       <div>

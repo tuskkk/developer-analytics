@@ -52,6 +52,9 @@ useSeoMeta({
       : (user.value?.login ?? "GitHub User"),
   description: () =>
     user.value?.bio ?? `GitHub profile of ${user.value?.login}`,
+  ogTitle: `${user.value?.name} (@${user.value?.login})`,
+  ogDescription: user.value?.bio,
+  ogImage: user.value?.avatarUrl,
 });
 
 const isLoginFromCurrentUser = computed(

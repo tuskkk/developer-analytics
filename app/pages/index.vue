@@ -37,6 +37,16 @@ useSeoMeta({
   title: "GitHub Developer Analytics",
   description:
     "Search GitHub developers, analyze repositories, stars, languages and activity.",
+  ogTitle: "Developer Analytics – Analyze GitHub Profiles & Repositories",
+  ogDescription:
+    "Explore GitHub users, repositories and insights with a modern analytics dashboard.",
+  ogImage: "https://devanalytics.app/og-image.png", // todo: after deployment check the real url
+
+  twitterCard: "summary_large_image",
+  twitterTitle: "Developer Analytics",
+  twitterDescription:
+    "Analyze GitHub profiles and repositories.",
+  twitterImage: "https://devanalytics.app/og-image.png", // todo: after deployment check the real url
 });
 
 // todo: replace with a value from the store

@@ -54,6 +54,8 @@ import { useFavoriteUsersStore } from "#imports";
 useSeoMeta({
   title: "Favorite Users",
   description: "Your saved GitHub developers.",
+  ogTitle: "Favorites | Developer Analytics",
+  ogDescription: "Browse your saved GitHub profiles.",
 });
 
 const toast = useToast();

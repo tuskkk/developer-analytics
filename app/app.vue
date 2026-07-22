@@ -12,4 +12,9 @@ useHead({
     return titleChunk ? `${titleChunk} · DevAnalytics` : "DevAnalytics";
   },
 });
+useSeoMeta({
+  ogImage: "/og-image.png", 
+  twitterCard: "summary_large_image",
+  twitterImage: "/og-image.png",
+});
 </script>

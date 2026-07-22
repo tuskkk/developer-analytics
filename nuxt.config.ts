@@ -55,8 +55,11 @@ export default defineNuxtConfig({
   vite: {
     optimizeDeps: {
       include: [
+        '@lucide/vue',
         '@vue/devtools-core',
         '@vue/devtools-kit',
+        'vue-toastification',
+        'vue3-apexcharts',
       ]
     }
   },

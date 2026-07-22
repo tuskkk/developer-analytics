@@ -5,7 +5,42 @@ export default defineNuxtConfig({
   runtimeConfig: {
     githubToken: process.env.GITHUB_TOKEN,
   },
-
+  app: {
+    head: {
+      link: [
+        {
+          rel: 'icon',
+          type: 'image/png',
+          sizes: '96x96',
+          href: '/favicon-96x96.png?v=1.0',
+        },
+        {
+          rel: 'icon',
+          type: 'image/svg+xml',
+          href: '/favicon.svg?v=1.0',
+        },
+        {
+          rel: 'shortcut icon',
+          href: '/favicon.ico?v=1.0',
+        },
+        {
+          rel: 'apple-touch-icon',
+          sizes: '180x180',
+          href: '/apple-touch-icon.png?v=1.0',
+        },
+        {
+          rel: 'manifest',
+          href: '/site.webmanifest?v=1.0',
+        },
+      ],
+      meta: [
+        {
+          name: 'apple-mobile-web-app-title',
+          content: 'devanalytics',
+        },
+      ],
+    },
+  },
   modules: [
     "@nuxt/eslint",
     "@nuxt/icon",

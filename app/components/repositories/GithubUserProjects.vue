@@ -59,7 +59,7 @@ watch(repositoriesError, (err) => {
       hideProgressBar: false,
       closeButton: "button",
       icon: true,
-      rtl: false
+      rtl: false,
     });
   }
 });

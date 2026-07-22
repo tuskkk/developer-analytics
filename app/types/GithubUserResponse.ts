@@ -7,7 +7,6 @@ interface GithubLanguage {
 
 interface GithubRepositoryLanguage {
   size: number;
-
   node: {
     name: string;
     color: string | null;

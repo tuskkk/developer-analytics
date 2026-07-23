@@ -13,7 +13,7 @@ useHead({
   },
 });
 useSeoMeta({
-  ogImage: "/og-image.png", 
+  ogImage: "/og-image.png",
   twitterCard: "summary_large_image",
   twitterImage: "/og-image.png",
 });

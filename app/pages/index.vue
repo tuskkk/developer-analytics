@@ -44,8 +44,7 @@ useSeoMeta({
 
   twitterCard: "summary_large_image",
   twitterTitle: "Developer Analytics",
-  twitterDescription:
-    "Analyze GitHub profiles and repositories.",
+  twitterDescription: "Analyze GitHub profiles and repositories.",
   twitterImage: "https://devanalytics.app/og-image.png", // todo: after deployment check the real url
 });
 

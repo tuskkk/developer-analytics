@@ -12,5 +12,5 @@ useSeoMeta({
   description: "Analyze GitHub users and repositories.",
   ogTitle: "Analytics | Developer Analytics",
   ogDescription: "Analyze GitHub users and repositories.",
-})
+});
 </script>

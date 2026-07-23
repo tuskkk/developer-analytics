@@ -57,12 +57,11 @@ export const useGithubUserDetailsStore = defineStore(
           `/api/github/user/${encodeURIComponent(trimmedLogin)}`,
         );
 
-        if (!user) {
-          throwGithubUserError();
-          return;
-        }
         setUser(user);
       } catch (err: unknown) {
+        if (isNuxtError(err) && err.status === 404) {
+          throw err
+        }
         setUserError(mapGithubErrorMessage(err));
       } finally {
         setLoading(false);

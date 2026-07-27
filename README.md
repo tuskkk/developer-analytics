@@ -30,27 +30,17 @@ A modern web application for exploring GitHub developers and analyzing their pub
 
 ### Home
 
-> Add screenshot here
-
-```
-public/screenshots/home.png
-```
+![Homepage](public/screenshots/homepage.png)
 
 ### User profile
 
-> Add screenshot here
+![Github user page - user card](public/screenshots/user_1.png)
 
-```
-public/screenshots/profile.png
-```
+![Github user page - teachnology stack analysis & repositories list](public/screenshots/user_2.png)
 
 ### Favorites
 
-> Add screenshot here
-
-```
-public/screenshots/favorites.png
-```
+![Favorites page](public/screenshots/favorites.png)
 
 ---
 
@@ -69,8 +59,8 @@ public/screenshots/favorites.png
 
 ### API
 
+- Nuxt Server API (Nitro)
 - GitHub GraphQL API
-- Apollo Client
 
 ### Development
 

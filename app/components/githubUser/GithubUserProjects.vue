@@ -1,12 +1,12 @@
 <template>
   <section class="mb-16 flex flex-col items-center">
     <MostStarredRepository />
-    <GithubUserRepositories
+    <LazyGithubUserRepositories
       v-if="user?.pinnedItems.nodes.length"
       data-type="pinnedItems"
     />
-    <GithubUserTechStack />
-    <GithubUserRepositories data-type="repositories" />
+    <LazyGithubUserTechStack />
+    <LazyGithubUserRepositories data-type="repositories" />
     <button
       v-if="showLoadMoreButton"
       class="px-5 py-3.5 mb-4 bg-white text-secondary rounded shadow-lg border border-tertiary uppercase hover:bg-secondary hover:text-white transition-colors"
@@ -26,7 +26,6 @@
 <script setup lang="ts">
 import { useToast, POSITION } from "vue-toastification";
 import { useGithubUserDetailsStore } from "@/stores/githubUserDetails";
-import GithubUserRepositories from "@/components/repositories/GithubUserRepositories.vue";
 import MostStarredRepository from "@/components/repositories/MostStarredRepository.vue";
 
 const toast = useToast();

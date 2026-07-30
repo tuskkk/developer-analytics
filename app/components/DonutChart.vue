@@ -1,5 +1,5 @@
 <template>
-  <apexchart
+  <VueApexCharts
     v-if="series.length"
     type="donut"
     :options="chartOptions"
@@ -8,6 +8,7 @@
 </template>
 
 <script setup lang="ts">
+const VueApexCharts = defineAsyncComponent(() => import("vue3-apexcharts"));
 const baseOptions = useApexChartOptions();
 const props = defineProps<{
   options: number[] | string[];

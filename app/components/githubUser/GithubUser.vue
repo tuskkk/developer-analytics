@@ -17,7 +17,7 @@
       </p>
     </div>
     <GithubUserOrganizations v-if="user?.organizations.nodes.length" />
-    <GithubUserProjects v-if="user?.repositories.nodes.length" />
+    <LazyGithubUserProjects v-if="user?.repositories.nodes.length" />
     <p v-else class="text-center text-secondaryText mb-4">
       This user has no public repositories.
     </p>
@@ -26,7 +26,6 @@
 
 <script setup lang="ts">
 import { useGithubUserDetailsStore } from "@/stores/githubUserDetails";
-import GithubUserProjects from "@/components/repositories/GithubUserProjects.vue";
 
 const githubUserDetailsStore = useGithubUserDetailsStore();
 

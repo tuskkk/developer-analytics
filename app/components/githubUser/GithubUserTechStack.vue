@@ -8,7 +8,7 @@
       class="mx-auto max-w-2xl rounded-lg bg-white py-3.5 px-4"
     >
       <ClientOnly>
-        <DonutChart :options="options" :series="series" unit="%" />
+        <LazyDonutChart :options="options" :series="series" unit="%" />
       </ClientOnly>
     </article>
     <p v-else class="text-secondaryText">
@@ -20,7 +20,6 @@
 <script setup lang="ts">
 import { storeToRefs } from "pinia";
 import { useGithubUserDetailsStore } from "~/stores/githubUserDetails";
-import DonutChart from "@/components/DonutChart.vue";
 
 const githubUserDetailsStore = useGithubUserDetailsStore();
 

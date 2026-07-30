@@ -1,3 +1,4 @@
+import { visualizer } from "rollup-plugin-visualizer";
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   compatibilityDate: "2025-07-15",
@@ -53,14 +54,33 @@ export default defineNuxtConfig({
     "@nuxtjs/tailwindcss",
   ],
   vite: {
+    build: {
+      rollupOptions: {
+        plugins: [
+          visualizer({
+            filename: "./dist/stats.html",
+            open: true,
+            gzipSize: true,
+          }),
+        ],
+        output: {
+          manualChunks(id) {
+            if (id.includes('node_modules')) {
+              if (id.includes('@vue')) return "vue";
+              if (id.includes('nuxt')) return "nuxt";
+            }
+          },
+        },
+      },
+    },
     optimizeDeps: {
       include: [
-        '@lucide/vue',
-        '@vue/devtools-core',
-        '@vue/devtools-kit',
-        'vue-toastification',
-        'vue3-apexcharts',
+        "@lucide/vue",
+        "@vue/devtools-core",
+        "@vue/devtools-kit",
+        "vue-toastification",
+        "vue3-apexcharts",
       ]
-    }
+    },
   },
 });

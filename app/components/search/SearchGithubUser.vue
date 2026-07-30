@@ -7,7 +7,7 @@
       @input="handleSearch"
       @keydown="handleKeydown"
     />
-    <SearchAutocomplete
+    <LazySearchAutocomplete
       class="max-w-full"
       :query="login"
       :suggestions="suggestions"

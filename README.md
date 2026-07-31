@@ -2,6 +2,12 @@
 
 A modern web application for exploring GitHub developers and analyzing their public repositories using the GitHub GraphQL API.
 
+## Live demo
+
+https://developer-analytics-liart.vercel.app/
+
+## Technologies used
+
 ![Nuxt](https://img.shields.io/badge/Nuxt-4-00DC82?logo=nuxtdotjs)
 ![Vue](https://img.shields.io/badge/Vue-3-4FC08D?logo=vuedotjs)
 ![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?logo=typescript)

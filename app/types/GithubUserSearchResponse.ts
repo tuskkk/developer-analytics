@@ -7,9 +7,9 @@ interface GithubUserBasic {
 }
 
 interface SearchUsersQueryVariables {
-  query: string,
-  type: string | null,
-  first: number,
+  query: string;
+  type: string | null;
+  first: number;
 }
 
 interface SearchUserResponse {

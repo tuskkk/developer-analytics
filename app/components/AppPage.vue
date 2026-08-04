@@ -10,12 +10,12 @@
       />
       <div
         v-else-if="bannerImage"
-        class="absolute inset-0 bg-gradient-to-b from-white/60 via-white/0 to-white z-10"
+        class="absolute inset-0 bg-gradient-to-b from-white/50 via-white/0 to-white z-10"
       />
       <div
         :class="[
           bannerClasses,
-          'absolute inset-0 bg-cover bg-center bg-no-repeat z-0',
+          'absolute inset-0 bg-contain bg-center bg-no-repeat z-0',
         ]"
       />
       <div class="relative z-20 flex h-full flex-col justify-between">

@@ -14,7 +14,7 @@
         </div>
         <div
           v-else-if="!initialized || loading"
-          class="relative w-full h-screen flex items-center justify-center z-10"
+          class="relative w-full h-[calc(100vh-12rem)] flex items-center justify-center z-10 md:h-screen"
         >
           <AppLoader />
         </div>

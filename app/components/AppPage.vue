@@ -2,7 +2,7 @@
   <div>
     <div
       v-if="isLandingPage || bannerImage"
-      class="relative overflow-hidden flex-1"
+      class="relative overflow-hidden h-full"
     >
       <div
         v-if="isLandingPage"
@@ -13,10 +13,7 @@
         class="absolute inset-0 bg-gradient-to-b from-white/50 via-white/0 to-white z-10"
       />
       <div
-        :class="[
-          bannerClasses,
-          'absolute inset-0 bg-contain bg-center bg-no-repeat z-0',
-        ]"
+        :class="[bannerClasses, 'absolute inset-0 bg-center bg-no-repeat z-0']"
       />
       <div class="relative z-20 flex h-full flex-col justify-between">
         <AppNavbar
@@ -59,10 +56,10 @@ const {
 const bannerClasses = computed(() => {
   switch (bannerImage) {
     case "developer":
-      return "bg-top bg-no-repeat bg-developer-mobile md:bg-developer-desktop";
+      return "bg-[length:100%_auto] bg-top bg-no-repeat bg-developer-mobile md:bg-developer-desktop";
 
     case "landing":
-      return "bg-center bg-landing-mobile md:bg-landing-desktop";
+      return "bg-cover bg-center bg-landing-mobile md:bg-landing-desktop";
 
     default:
       return "";

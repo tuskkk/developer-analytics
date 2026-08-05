@@ -46,7 +46,6 @@ import { storeToRefs } from "pinia";
 import { useGithubUserDetailsStore } from "@/stores/githubUserDetails";
 import { MapPin, BriefcaseBusiness } from "@lucide/vue";
 import { useFavoriteGithubUsers } from "@/composables/useFavoriteGithubUsers";
-import AddToFavorites from "~/components/AddToFavorites.vue";
 
 const githubUserDetailsStore = useGithubUserDetailsStore();
 const { user } = storeToRefs(githubUserDetailsStore);

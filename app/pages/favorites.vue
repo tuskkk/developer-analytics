@@ -47,7 +47,7 @@
 
 <script setup lang="ts">
 import { useToast, POSITION } from "vue-toastification";
-import AddToFavorites from "@/components/favorites/AddToFavorites.vue";
+import AddToFavorites from "~/components/AddToFavorites.vue";
 import { useFavoriteGithubUsers } from "@/composables/useFavoriteGithubUsers";
 import { useFavoriteUsersStore } from "#imports";
 

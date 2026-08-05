@@ -20,7 +20,7 @@
         {{ user?.location }}
       </span>
     </div>
-    <div class="mb-8 lg:mb-4">
+    <div class="mb-4">
       <a
         v-if="user?.url"
         :href="user.url"
@@ -32,6 +32,7 @@
       </a>
     </div>
     <AddToFavorites
+      class="mb-4 md:mb-0"
       :is-favorite="isUserFavorite(user?.login as string)"
       :login="user?.login as string"
       @toggle-favorites="toggleUserFavorites"
@@ -45,7 +46,7 @@ import { storeToRefs } from "pinia";
 import { useGithubUserDetailsStore } from "@/stores/githubUserDetails";
 import { MapPin, BriefcaseBusiness } from "@lucide/vue";
 import { useFavoriteGithubUsers } from "@/composables/useFavoriteGithubUsers";
-import AddToFavorites from "@/components/favorites/AddToFavorites.vue";
+import AddToFavorites from "~/components/AddToFavorites.vue";
 
 const githubUserDetailsStore = useGithubUserDetailsStore();
 const { user } = storeToRefs(githubUserDetailsStore);

@@ -20,9 +20,9 @@
         <NuxtImg
           :src="`/images/${bannerImage}_mobile.webp`"
           :alt="`${bannerImage} image`"
-          class="absolute inset-0 h-full w-full object-top"
+          class="absolute inset-0 w-full object-top"
           :class="[
-            bannerImage === 'landing' ? 'object-cover' : 'object-contain',
+            bannerImage === 'landing' ? 'object-cover h-full' : 'h-auto',
           ]"
           preload
           fetchpriority="high"

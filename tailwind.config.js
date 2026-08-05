@@ -30,12 +30,6 @@ export default {
       spacing: {
         gutterXl: '30px',
       },
-      backgroundImage: {
-        'landing-mobile': 'url(/images/landing_mobile.webp)',
-        'landing-desktop': 'url(/images/landing_desktop.webp)',
-        'developer-mobile': 'url(/images/developer_mobile.webp)',
-        'developer-desktop': 'url(/images/developer_desktop.webp)',
-      },
     },
   },
   plugins: [],

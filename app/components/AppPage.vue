@@ -12,9 +12,22 @@
         v-else-if="bannerImage"
         class="absolute inset-0 bg-gradient-to-b from-white/50 via-white/0 to-white z-10"
       />
-      <div
-        :class="[bannerClasses, 'absolute inset-0 bg-center bg-no-repeat z-0']"
-      />
+      <picture>
+        <source
+          media="(min-width: 768px)"
+          :srcset="`/images/${bannerImage}_desktop.webp`"
+        />
+        <NuxtImg
+          :src="`/images/${bannerImage}_mobile.webp`"
+          :alt="`${bannerImage} image`"
+          class="absolute inset-0 h-full w-full object-top"
+          :class="[
+            bannerImage === 'landing' ? 'object-cover' : 'object-contain',
+          ]"
+          preload
+          fetchpriority="high"
+        />
+      </picture>
       <div class="relative z-20 flex h-full flex-col justify-between">
         <AppNavbar
           :is-navbar-minimal="isNavbarMinimal"
@@ -52,17 +65,4 @@ const {
   bannerImage = null,
   isLandingPage = false,
 } = defineProps<Props>();
-
-const bannerClasses = computed(() => {
-  switch (bannerImage) {
-    case "developer":
-      return "bg-[length:100%_auto] bg-top bg-no-repeat bg-developer-mobile md:bg-developer-desktop";
-
-    case "landing":
-      return "bg-cover bg-center bg-landing-mobile md:bg-landing-desktop";
-
-    default:
-      return "";
-  }
-});
 </script>

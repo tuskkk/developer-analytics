@@ -18,6 +18,8 @@
           src="/images/logo.svg"
           alt="Developer Analytics"
           class="max-w-28 mb-2 h-auto flex-shrink-0"
+          width="112"
+          height="20"
         />
         <p>Discover GitHub developers and explore repository statistics.</p>
       </div>

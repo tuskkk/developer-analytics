@@ -1,33 +1,34 @@
 <template>
   <AppPage banner-image="developer">
     <template #content>
-      <Transition
-        enter-active-class="transition-all duration-500 ease-in-out"
-        enter-from-class="opacity-0 translate-y-8 scale-65"
-        enter-to-class="opacity-100 translate-y-0 scale-100"
+      <div v-if="userError" class="w-full h-screen pt-32">
+        <ErrorBanner
+          class="relative w-full h-14 flex z-10"
+          :message="userError"
+        />
+      </div>
+      <div
+        v-else-if="!initialized || loading"
+        class="relative w-full h-[calc(100vh-12rem)] flex items-center justify-center z-10 md:h-screen"
       >
-        <div v-if="userError" class="w-full h-screen pt-32">
-          <ErrorBanner
-            class="relative w-full h-14 flex z-10"
-            :message="userError"
-          />
-        </div>
-        <div
-          v-else-if="!initialized || loading"
-          class="relative w-full h-[calc(100vh-12rem)] flex items-center justify-center z-10 md:h-screen"
+        <AppLoader />
+      </div>
+      <div v-else-if="isUserShown" class="w-full pt-32">
+        <Transition
+          appear
+          enter-active-class="transition-all duration-200 ease-out"
+          enter-from-class="opacity-0 translate-y-3"
+          enter-to-class="opacity-100 translate-y-0"
         >
-          <AppLoader />
-        </div>
-        <div v-else-if="isUserShown" class="w-full pt-32">
           <GithubUser />
-        </div>
-        <div
-          v-else-if="login && isUserEmpty"
-          class="relative w-full h-screen flex items-start justify-start text-2xl text-secondary tracking-widest pt-24 z-10"
-        >
-          No user found with login "{{ login }}"
-        </div>
-      </Transition>
+        </Transition>
+      </div>
+      <div
+        v-else-if="login && isUserEmpty"
+        class="relative w-full h-screen flex items-start justify-start text-2xl text-secondary tracking-widest pt-24 z-10"
+      >
+        No user found with login "{{ login }}"
+      </div>
     </template>
   </AppPage>
 </template>

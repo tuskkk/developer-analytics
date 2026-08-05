@@ -31,7 +31,7 @@
         {{ user.url }}
       </a>
     </div>
-    <AddToFavorites
+    <LazyAddToFavorites
       class="mb-4 md:mb-0"
       :is-favorite="isUserFavorite(user?.login as string)"
       :login="user?.login as string"

@@ -7,6 +7,8 @@
       :src="user.avatarUrl"
       :alt="`${user.login} avatar`"
       class="absolute left-1/2 -translate-x-1/2 -top-10 w-28 h-28 rounded-full object-cover shrink-0 shadow-xl lg:w-36 lg:h-36 lg:-top-16"
+      width="144"
+      height="144"
     />
     <GithubUserCard />
     <div

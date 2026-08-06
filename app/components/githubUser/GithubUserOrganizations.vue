@@ -16,6 +16,8 @@
             :src="org.avatarUrl"
             :alt="`${org.login} avatar`"
             class="w-12 h-12 rounded-full object-cover"
+            width="48"
+            height="48"
           />
           <span class="hidden lg:block">{{ org.name || org.login }}</span>
         </a>

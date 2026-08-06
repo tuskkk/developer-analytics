@@ -17,6 +17,8 @@
         :class="[
           isFullVersion ? 'h-24 w-24 md:h-[120px] md:w-[120px]' : 'h-10 w-10',
         ]"
+        :width="isFullVersion ? 96 : 40"
+        :height="isFullVersion ? 96 : 40"
       />
       <div>
         <p

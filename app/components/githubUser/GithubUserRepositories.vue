@@ -1,6 +1,6 @@
 <template>
   <section
-    class="tracking-wide"
+    class="w-full min-w-0 tracking-wide"
     :class="[
       dataType === 'repositories' &&
       (showLoadMoreButton || repositoriesLoading || repositoriesError)
@@ -24,14 +24,14 @@
       <article
         v-for="repository in user?.[dataType]?.nodes ?? []"
         :key="repository.id"
-        class="rounded-xl border border-tertiary bg-white p-5"
+        class="min-w-0 rounded-xl border border-tertiary bg-white p-5"
       >
-        <div class="mb-3 flex items-start justify-between gap-4">
+        <div class="min-w-0 mb-3 flex items-start justify-between gap-4">
           <a
             :href="repository.url"
             target="_blank"
             rel="noopener noreferrer"
-            class="font-semibold text-secondary hover:underline"
+            class="min-w-0 flex-1 font-semibold text-secondary truncate hover:underline"
           >
             {{ repository.name }}
           </a>

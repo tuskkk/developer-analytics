@@ -19,7 +19,6 @@
           <mark v-if="part.highlighted" class="rounded bg-secondary/50 px-0.5">
             {{ part.text }}
           </mark>
-
           <span v-else>
             {{ part.text }}
           </span>

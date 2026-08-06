@@ -8,7 +8,7 @@
       @keydown="handleKeydown"
     />
     <LazySearchAutocomplete
-      class="max-w-full"
+      class="min-w-56 max-w-full"
       :query="login"
       :suggestions="suggestions"
       :active-index="activeIndex"

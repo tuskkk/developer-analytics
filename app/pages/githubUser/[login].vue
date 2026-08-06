@@ -11,14 +11,7 @@
         <GithubUserSkeleton />
       </div>
       <div v-else-if="isUserShown" class="w-full pt-32">
-        <Transition
-          appear
-          enter-active-class="transition-all duration-200 ease-out"
-          enter-from-class="opacity-0 translate-y-3"
-          enter-to-class="opacity-100 translate-y-0"
-        >
-          <GithubUser />
-        </Transition>
+        <GithubUser />
       </div>
       <div
         v-else-if="login && isUserEmpty"

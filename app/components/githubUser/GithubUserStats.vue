@@ -10,7 +10,6 @@
       </span>
       followers
     </div>
-
     <div
       class="flex flex-col items-center text-sm text-secondaryText tracking-wide"
     >
@@ -19,7 +18,6 @@
       </span>
       following
     </div>
-
     <div
       class="flex flex-col items-center text-sm text-secondaryText tracking-wide"
     >

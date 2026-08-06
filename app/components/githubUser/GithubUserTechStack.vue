@@ -5,7 +5,7 @@
     </h2>
     <article
       v-if="areThereRepositories && areThereLanguages"
-      class="mx-auto max-w-2xl rounded-lg bg-white py-3.5 px-4"
+      class="mx-auto rounded-lg bg-white py-3.5 md:px-4 md:max-w-2xl"
     >
       <ClientOnly>
         <LazyDonutChart :options="options" :series="series" unit="%" />

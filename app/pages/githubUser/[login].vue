@@ -7,11 +7,8 @@
           :message="userError"
         />
       </div>
-      <div
-        v-else-if="!initialized || loading"
-        class="relative w-full h-[calc(100vh-12rem)] flex items-center justify-center z-10 md:h-screen"
-      >
-        <AppLoader />
+      <div v-else-if="!initialized || loading" class="w-full pt-32">
+        <GithubUserSkeleton />
       </div>
       <div v-else-if="isUserShown" class="w-full pt-32">
         <Transition

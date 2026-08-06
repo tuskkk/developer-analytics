@@ -13,7 +13,6 @@
         dataType === "repositories" ? "Top repositories" : "Featured projects"
       }}
     </h2>
-
     <div
       class="grid gap-4"
       :class="[
@@ -37,25 +36,21 @@
             {{ repository.name }}
           </a>
         </div>
-
         <p
           v-if="repository.description"
           class="mb-4 line-clamp-2 text-sm text-primaryText"
         >
           {{ repository.description }}
         </p>
-
         <div class="mb-4 flex flex-wrap gap-4 text-sm text-secondaryText">
           <div class="flex items-center gap-1">
             <Star :size="16" />
             {{ repository.stargazerCount }}
           </div>
-
           <div class="flex items-center gap-1">
             <GitFork :size="16" />
             {{ repository.forkCount }}
           </div>
-
           <div
             v-if="repository.primaryLanguage"
             class="flex items-center gap-1"
@@ -68,7 +63,6 @@
             {{ repository.primaryLanguage.name }}
           </div>
         </div>
-
         <div
           v-if="repository.updatedAt && dataType === 'repositories'"
           class="flex items-center gap-2 border-t border-tertiary pt-4 text-sm text-primaryText"

@@ -59,24 +59,12 @@ export const useGithubUserDetailsStore = defineStore(
 
         setUser(user);
         return user;
-      } /*catch (err: unknown) {
+      } catch (err: unknown) {
         if (isNuxtError(err) && err.status === 404) {
           throw err;
         }
         setUserError(mapGithubErrorMessage(err));
         return null;
-      } */
-        catch (err: unknown) {
-          console.error("fetchGithubUser", err)
-
-          if (isNuxtError(err)) {
-            console.error("status:", err.status)
-            console.error("statusCode:", err.statusCode)
-            console.error("message:", err.message)
-            console.error("data:", err.data)
-          }
-
-          throw err
       } finally {
         setLoading(false);
         setInitialized(true);

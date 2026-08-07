@@ -24,11 +24,11 @@
 </template>
 
 <script setup lang="ts">
-//import { useToast } from "vue-toastification";
+import { useToast } from "vue-toastification";
 import { useGithubUserDetailsStore } from "@/stores/githubUserDetails";
 import MostStarredRepository from "@/components/repositories/MostStarredRepository.vue";
 
-//const toast = useToast();
+const toast = useToast();
 
 const githubUserDetailsStore = useGithubUserDetailsStore();
 
@@ -46,7 +46,7 @@ const loadMoreRepositories = () => {
   fetchMoreRepositories(login, first, after);
 };
 
-/*watch(repositoriesError, (err) => {
+watch(repositoriesError, (err) => {
   if (err) {
     toast.error(err, {
       position: "bottom-right",
@@ -61,5 +61,5 @@ const loadMoreRepositories = () => {
       rtl: false,
     });
   }
-});*/
+});
 </script>

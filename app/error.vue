@@ -10,10 +10,10 @@
       <p
         class="mb-4 text-sm font-semibold uppercase tracking-wider text-secondary"
       >
-        Error {{ error.statusCode }}
+        Error {{ error.status }}
       </p>
       <h1 class="mb-6 text-4xl text-primaryText">
-        {{ error.statusCode === 404 ? "Page not found" : "Something went wrong" }}
+        {{ error.status === 404 ? "Page not found" : "Something went wrong" }}
       </h1>
       <p class="mb-12 text-secondaryText">
         The page you're looking for doesn't exist or may have been moved.

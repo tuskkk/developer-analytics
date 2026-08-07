@@ -46,7 +46,7 @@
 </template>
 
 <script setup lang="ts">
-import { useToast, POSITION } from "vue-toastification";
+import { useToast } from "vue-toastification";
 import AddToFavorites from "~/components/AddToFavorites.vue";
 import { useFavoriteGithubUsers } from "@/composables/useFavoriteGithubUsers";
 import { useFavoriteUsersStore } from "#imports";
@@ -84,7 +84,7 @@ watch(favoriteUsers, async (users) => {
 
 const removeFromFavorites = (login: string) => {
   toast.info(`${login} is removed from favorites`, {
-    position: POSITION.BOTTOM_RIGHT,
+    position: "bottom-right",
     timeout: 5000,
     closeOnClick: true,
     pauseOnHover: true,

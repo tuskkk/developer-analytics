@@ -81,7 +81,7 @@ const fetchUserData = async () => {
 
   return await fetchGithubUser(login.value);
 };
-
+// move to composable and change into: const { data: userData } = await useAsyncData(...)
 await useAsyncData(
   () => `github-user-${login.value}`,
   () => fetchUserData(),

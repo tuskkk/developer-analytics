@@ -1,5 +1,5 @@
 <template>
-  <AppPage banner-image="developer">
+  <!--<AppPage banner-image="developer">
     <template #content>
       <div v-if="userError" class="w-full h-screen pt-32">
         <ErrorBanner
@@ -25,7 +25,8 @@
         No user found with login "{{ login }}"
       </div>
     </template>
-  </AppPage>
+  </AppPage>-->
+  <div>Hello SSR</div>
 </template>
 
 <script setup lang="ts">

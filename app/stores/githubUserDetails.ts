@@ -53,16 +53,14 @@ export const useGithubUserDetailsStore = defineStore(
       resetUserErrors();
 
       try {
-        const user = await $fetch<GithubUser>(
+        const user = await $fetch<GithubUser | null>(
           `/api/github/user/${encodeURIComponent(trimmedLogin)}`,
         );
 
         setUser(user);
         return user;
       } catch (err: unknown) {
-        if (isNuxtError(err) && err.status === 404) {
-          throw err;
-        }
+        console.error("fetchGithubUser", err);
         setUserError(mapGithubErrorMessage(err));
         return null;
       } finally {

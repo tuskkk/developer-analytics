@@ -47,7 +47,6 @@ export const useGithubUserDetailsStore = defineStore(
     };
 
     const fetchGithubUser = async (login: string) => {
-      console.log("4. before $fetch")
       const trimmedLogin = login.trim();
 
       if (!trimmedLogin) return;
@@ -57,9 +56,8 @@ export const useGithubUserDetailsStore = defineStore(
         const user = await $fetch<GithubUser | null>(
           `/api/github/user/${encodeURIComponent(trimmedLogin)}`,
         );
-        console.log("5. after $fetch")
+
         setUser(user);
-        console.log("6. after setUser")
         return user;
       } catch (err: unknown) {
         console.error("fetchGithubUser", err);

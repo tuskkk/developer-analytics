@@ -30,7 +30,6 @@
 
 <script setup lang="ts">
 import { computed } from "vue";
-console.log("1. page setup")
 
 const route = useRoute();
 
@@ -82,7 +81,6 @@ const fetchUserData = async () => {
 
   return await fetchGithubUser(login.value);
 };
-console.log("2. before useAsyncData")
 // move to composable and change into: const { data: userData } = await useAsyncData(...)
 await useAsyncData(
   () => `github-user-${login.value}`,
@@ -90,4 +88,3 @@ await useAsyncData(
   { watch: [login] },
 );
 </script>
-console.log("3. after useAsyncData")

@@ -2,7 +2,7 @@
   <div>
     <div
       v-if="isLandingPage || bannerImage"
-      class="relative overflow-hidden h-full"
+      class="relative overflow-hidden min-h-screen flex flex-col"
     >
       <div
         v-if="isLandingPage"
@@ -26,6 +26,7 @@
           ]"
           preload
           fetchpriority="high"
+          quality="80"
         />
       </picture>
       <div class="relative z-20 flex h-full flex-col justify-between">

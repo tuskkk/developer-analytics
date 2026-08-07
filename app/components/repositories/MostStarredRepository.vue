@@ -12,24 +12,30 @@
         <h3
           class="mb-2 text-lg font-semibold text-secondary cursor-pointer hover:underline"
         >
-          {{ name }}
+          {{ mostStarredRepository?.name }}
         </h3>
-        <p v-if="description" class="text-sm md:text-base text-primaryText">
-          {{ description }}
+        <p
+          v-if="mostStarredRepository?.description"
+          class="text-sm md:text-base text-primaryText"
+        >
+          {{ mostStarredRepository?.description }}
         </p>
       </div>
       <div class="flex flex-wrap gap-5 text-sm text-secondaryText md:text-base">
         <div class="flex items-center gap-2 md:gap-3">
           <Star :size="20" />
-          {{ stargazerCount }}
+          {{ mostStarredRepository?.stargazerCount }}
         </div>
         <div class="flex items-center gap-2 md:gap-3">
           <GitFork :size="20" />
-          {{ forkCount }}
+          {{ mostStarredRepository?.forkCount }}
         </div>
-        <div v-if="primaryLanguage" class="flex items-center gap-2 md:gap-3">
+        <div
+          v-if="mostStarredRepository?.primaryLanguage"
+          class="flex items-center gap-2 md:gap-3"
+        >
           <span class="w-4 h-4 rounded-full" :style="languageStyle" />
-          {{ primaryLanguage.name }}
+          {{ mostStarredRepository?.primaryLanguage?.name }}
         </div>
       </div>
       <div
@@ -39,7 +45,7 @@
         Updated {{ formattedDate }}
       </div>
       <NuxtLink
-        :to="url"
+        :to="mostStarredRepository?.url"
         target="_blank"
         class="inline-flex items-center gap-3 text-secondary hover:underline"
       >
@@ -63,11 +69,10 @@ const { user } = storeToRefs(githubUserDetailsStore);
 const mostStarredRepository = computed<GithubRepository | null>(
   () => user.value?.repositories?.nodes?.[0] ?? null,
 );
-const { primaryLanguage, stargazerCount, forkCount, name, description, url } =
-  mostStarredRepository.value ?? {};
 
 const languageStyle = computed<CSSProperties>(() => ({
-  backgroundColor: primaryLanguage?.color ?? "transparent",
+  backgroundColor:
+    mostStarredRepository.value?.primaryLanguage?.color ?? "transparent",
 }));
 
 const formattedDate = computed(() => {

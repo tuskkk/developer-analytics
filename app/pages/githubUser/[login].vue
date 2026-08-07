@@ -7,11 +7,16 @@
           :message="userError"
         />
       </div>
-      <div v-else-if="!initialized || loading" class="w-full pt-32">
-        <GithubUserSkeleton />
-      </div>
-      <div v-else-if="isUserShown" class="w-full pt-32">
-        <GithubUser />
+      <div v-else-if="isUserShown || !initialized || loading" class="relative">
+        <div
+          v-show="!initialized || loading"
+          class="absolute inset-0w-full pt-32"
+        >
+          <GithubUserSkeleton />
+        </div>
+        <div class="w-full pt-32">
+          <GithubUser :class="{ invisible: !initialized || loading }" />
+        </div>
       </div>
       <div
         v-else-if="login && isUserEmpty"
@@ -68,13 +73,18 @@ const isUserEmpty = computed(() => {
 });
 
 const fetchUserData = async () => {
-  if (shouldFetchUser.value) {
-    setLoading(true);
-    await fetchGithubUser(login.value);
+  if (!shouldFetchUser.value) {
+    return user.value;
   }
+
+  setLoading(true);
+
+  return await fetchGithubUser(login.value);
 };
 
-onMounted(async () => fetchUserData());
-
-watch(login, async () => fetchUserData());
+await useAsyncData(
+  () => `github-user-${login.value}`,
+  () => fetchUserData(),
+  { watch: [login] },
+);
 </script>

@@ -58,11 +58,13 @@ export const useGithubUserDetailsStore = defineStore(
         );
 
         setUser(user);
+        return user;
       } catch (err: unknown) {
         if (isNuxtError(err) && err.status === 404) {
           throw err;
         }
         setUserError(mapGithubErrorMessage(err));
+        return null;
       } finally {
         setLoading(false);
         setInitialized(true);

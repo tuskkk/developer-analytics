@@ -8,7 +8,7 @@
     >
       <AppLogo class="max-w-28 md:max-w-40" />
       <div class="flex items-center gap-4 md:gap-8">
-        <SearchGithubUser
+        <LazySearchGithubUser
           v-if="!isNavbarMinimal"
           class="h-8 w-full max-w-40 md:max-w-56"
         />

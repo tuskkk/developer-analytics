@@ -24,7 +24,7 @@
 </template>
 
 <script setup lang="ts">
-import { useToast, POSITION } from "vue-toastification";
+import { useToast } from "vue-toastification";
 import { useGithubUserDetailsStore } from "@/stores/githubUserDetails";
 import MostStarredRepository from "@/components/repositories/MostStarredRepository.vue";
 
@@ -49,7 +49,7 @@ const loadMoreRepositories = () => {
 watch(repositoriesError, (err) => {
   if (err) {
     toast.error(err, {
-      position: POSITION.BOTTOM_RIGHT,
+      position: "bottom-right",
       timeout: 5000,
       closeOnClick: true,
       pauseOnHover: true,

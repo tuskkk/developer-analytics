@@ -1,6 +1,15 @@
 <template>
   <NuxtLoadingIndicator color="#8B03F0" :height="4" />
-  <Toaster position="bottom-right" />
+  <Toaster
+    position="bottom-right"
+    :toast-options="{
+      style: {
+        fontFamily: 'Roboto',
+        letterSpacing: '0.05em',
+        fontSize: '16px',
+      },
+    }"
+  />
   <div class="font-sans">
     <NuxtRouteAnnouncer />
     <NuxtPage page-key="search" />

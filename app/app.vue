@@ -1,5 +1,6 @@
 <template>
   <NuxtLoadingIndicator color="#8B03F0" :height="4" />
+  <Toaster position="bottom-right" />
   <div class="font-sans">
     <NuxtRouteAnnouncer />
     <NuxtPage page-key="search" />
@@ -7,6 +8,9 @@
 </template>
 
 <script setup lang="ts">
+import { Toaster } from "vue-sonner";
+import "vue-sonner/style.css";
+
 useHead({
   titleTemplate: (titleChunk) => {
     return titleChunk ? `${titleChunk} · DevAnalytics` : "DevAnalytics";

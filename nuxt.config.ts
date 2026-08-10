@@ -79,7 +79,7 @@ export default defineNuxtConfig({
         "@vue/devtools-core",
         "@vue/devtools-kit",
         '@vueuse/core',
-        "vue-toastification",
+        "vue-sonner",
         "vue3-apexcharts",
       ]
     },

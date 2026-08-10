@@ -46,7 +46,7 @@
 </template>
 
 <script setup lang="ts">
-import { useToast } from "vue-toastification";
+import { toast } from "vue-sonner";
 import AddToFavorites from "~/components/AddToFavorites.vue";
 import { useFavoriteGithubUsers } from "@/composables/useFavoriteGithubUsers";
 import { useFavoriteUsersStore } from "#imports";
@@ -57,8 +57,6 @@ useSeoMeta({
   ogTitle: "Favorites | Developer Analytics",
   ogDescription: "Browse your saved GitHub profiles.",
 });
-
-const toast = useToast();
 
 const { toggleFavorites, isUserFavorite, favoriteUsers } =
   useFavoriteGithubUsers();
@@ -84,16 +82,7 @@ watch(favoriteUsers, async (users) => {
 
 const removeFromFavorites = (login: string) => {
   toast.info(`${login} is removed from favorites`, {
-    position: "bottom-right",
-    timeout: 5000,
-    closeOnClick: true,
-    pauseOnHover: true,
-    draggable: true,
-    showCloseButtonOnHover: false,
-    hideProgressBar: false,
-    closeButton: "button",
-    icon: true,
-    rtl: false,
+    style: { background: "#F9FAFB", color: "#111928" },
   });
   toggleFavorites(login);
 };

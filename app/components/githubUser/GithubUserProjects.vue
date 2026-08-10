@@ -24,11 +24,9 @@
 </template>
 
 <script setup lang="ts">
-import { useToast } from "vue-toastification";
+import { toast } from "vue-sonner";
 import { useGithubUserDetailsStore } from "@/stores/githubUserDetails";
 import MostStarredRepository from "@/components/repositories/MostStarredRepository.vue";
-
-const toast = useToast();
 
 const githubUserDetailsStore = useGithubUserDetailsStore();
 
@@ -48,18 +46,7 @@ const loadMoreRepositories = () => {
 
 watch(repositoriesError, (err) => {
   if (err) {
-    toast.error(err, {
-      position: "bottom-right",
-      timeout: 5000,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      showCloseButtonOnHover: false,
-      hideProgressBar: false,
-      closeButton: "button",
-      icon: true,
-      rtl: false,
-    });
+    toast.error(err, { style: { color: "#FF0000" } });
   }
 });
 </script>

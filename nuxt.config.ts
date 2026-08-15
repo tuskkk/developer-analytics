@@ -6,6 +6,9 @@ export default defineNuxtConfig({
   runtimeConfig: {
     githubToken: process.env.GITHUB_TOKEN,
   },
+  build: {
+    analyze: true,
+  },
   sourcemap: {
     server: true,
     client: true,

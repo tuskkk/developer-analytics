@@ -1,5 +1,5 @@
 <template>
-  <section class="w-full mb-16">
+  <section ref="techStackSection" class="w-full mb-16">
     <h2 class="mb-4 text-3xl tracking-tight text-primaryText">
       Tech stack analytics
     </h2>
@@ -8,7 +8,12 @@
       class="mx-auto rounded-lg bg-white py-3.5 md:px-4 md:max-w-2xl"
     >
       <ClientOnly>
-        <LazyDonutChart :options="options" :series="series" unit="%" />
+        <LazyDonutChart
+          v-if="shouldLoadChart"
+          :options="options"
+          :series="series"
+          unit="%"
+        />
       </ClientOnly>
     </article>
     <p v-else class="text-secondaryText">
@@ -24,6 +29,10 @@ import { useGithubUserDetailsStore } from "~/stores/githubUserDetails";
 const githubUserDetailsStore = useGithubUserDetailsStore();
 
 const { user } = storeToRefs(githubUserDetailsStore);
+
+const techStackSection = ref<HTMLElement | null>(null);
+const shouldLoadChart = ref(false);
+
 const nodes = computed(() => user.value?.repositories.nodes);
 
 const areThereRepositories = computed(
@@ -57,4 +66,24 @@ const series = computed(() => {
 });
 
 const areThereLanguages = computed(() => options.value.length > 0);
+
+onMounted(() => {
+  if (!techStackSection.value) {
+    return;
+  }
+
+  const observer = new IntersectionObserver(
+    ([entry]) => {
+      if (!entry?.isIntersecting) {
+        return;
+      }
+
+      shouldLoadChart.value = true;
+      observer.disconnect();
+    },
+    { rootMargin: "300px" },
+  );
+
+  observer.observe(techStackSection.value);
+});
 </script>

@@ -5,7 +5,7 @@
       v-if="user?.pinnedItems.nodes.length"
       data-type="pinnedItems"
     />
-    <!--<GithubUserTechStack /> -->
+    <LazyGithubUserTechStack />
     <LazyGithubUserRepositories data-type="repositories" />
     <button
       v-if="showLoadMoreButton"
@@ -27,7 +27,6 @@
 import { toast } from "vue-sonner";
 import { useGithubUserDetailsStore } from "@/stores/githubUserDetails";
 import MostStarredRepository from "@/components/repositories/MostStarredRepository.vue";
-
 const githubUserDetailsStore = useGithubUserDetailsStore();
 
 const { user, repositoriesLoading, repositoriesError, showLoadMoreButton } =

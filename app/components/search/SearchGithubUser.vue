@@ -19,6 +19,7 @@
 
 <script setup lang="ts">
 import { ref } from "vue";
+import { useDebounceFn } from "@vueuse/core";
 import type { GithubUserBasic } from "@/types/GithubUserSearchResponse";
 import { useGithubUserSearchStore } from "@/stores/githubUserSearch";
 
@@ -33,7 +34,7 @@ const activeIndex = ref(-1);
 
 const githubUserSearchStore = useGithubUserSearchStore();
 const { suggestions } = storeToRefs(githubUserSearchStore);
-const { searchGithubUsers } = githubUserSearchStore;
+const { searchGithubUsers, setSuggestions } = githubUserSearchStore;
 
 const handleKeydown = (event: KeyboardEvent) => {
   if (!suggestions.value.length) return;
@@ -70,12 +71,14 @@ const handleKeydown = (event: KeyboardEvent) => {
   }
 };
 
-const handleSearch = () => {
+const handleSearch = useDebounceFn(() => {
   if (login.value.length < 3) {
+    setSuggestions([]);
     return;
   }
+
   searchGithubUsers(login.value);
-};
+}, 300);
 
 const handleSelect = (userData: GithubUserBasic) => {
   login.value = userData.login;

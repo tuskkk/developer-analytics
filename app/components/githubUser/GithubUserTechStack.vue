@@ -15,7 +15,7 @@
           unit="%"
         />
       </ClientOnly>-->
-      TEST123
+      <div>TEST123</div>
     </article>
     <p v-else class="text-secondaryText">
       No repositories with languages found for this user.

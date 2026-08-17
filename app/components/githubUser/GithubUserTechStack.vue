@@ -8,7 +8,7 @@
       class="mx-auto rounded-lg bg-white py-3.5 md:px-4 md:max-w-2xl"
     >
       <ClientOnly>
-        <DonutChart
+        <LazyDonutChart
           v-if="shouldLoadChart"
           :options="options"
           :series="series"

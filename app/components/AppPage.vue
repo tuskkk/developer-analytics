@@ -24,7 +24,7 @@
           :class="[
             bannerImage === 'landing' ? 'object-cover h-full' : 'h-auto',
           ]"
-          preload
+          :preload="{ fetchPriority: 'high' }"
           fetchpriority="high"
           quality="80"
         />

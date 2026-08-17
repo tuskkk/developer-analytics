@@ -4,7 +4,7 @@
     class="relative flex flex-col gap-6 py-3.5 px-4 bg-white border rounded-lg shadow-lg lg:py-5 lg:px-28"
   >
     <img
-      :src="user.avatarUrl"
+      :src="avatarUrl"
       :alt="`${user.login} avatar`"
       class="absolute left-1/2 -translate-x-1/2 -top-10 w-28 h-28 rounded-full object-cover shrink-0 shadow-xl lg:w-36 lg:h-36 lg:-top-16"
       width="144"
@@ -32,4 +32,15 @@ import { useGithubUserDetailsStore } from "@/stores/githubUserDetails";
 const githubUserDetailsStore = useGithubUserDetailsStore();
 
 const { user } = storeToRefs(githubUserDetailsStore);
+
+const avatarUrl = computed(() => {
+  if (!user.value?.avatarUrl) {
+    return ''
+  }
+
+  const url = new URL(user.value.avatarUrl)
+  url.searchParams.set('s', '288')
+
+  return url.toString()
+})
 </script>

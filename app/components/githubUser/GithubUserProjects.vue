@@ -5,7 +5,7 @@
       v-if="user?.pinnedItems.nodes.length"
       data-type="pinnedItems"
     />
-    <LazyGithubUserTechStack />
+    <GithubUserTechStack />
     <LazyGithubUserRepositories data-type="repositories" />
     <button
       v-if="showLoadMoreButton"

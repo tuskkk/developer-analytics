@@ -1,12 +1,12 @@
 <template>
   <section class="mb-16 flex flex-col items-center">
     <MostStarredRepository />
-    <!--<LazyGithubUserRepositories
+    <LazyGithubUserRepositories
       v-if="user?.pinnedItems.nodes.length"
       data-type="pinnedItems"
-    />-->
-    <GithubUserTechStack />
-    <!--<LazyGithubUserRepositories data-type="repositories" />-->
+    />
+    <!--<GithubUserTechStack /> -->
+    <LazyGithubUserRepositories data-type="repositories" />
     <button
       v-if="showLoadMoreButton"
       class="px-5 py-3.5 mb-4 bg-white text-secondary rounded shadow-lg border border-tertiary uppercase hover:bg-secondary hover:text-white transition-colors"

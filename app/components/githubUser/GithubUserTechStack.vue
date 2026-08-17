@@ -7,14 +7,15 @@
       v-if="areThereRepositories && areThereLanguages"
       class="mx-auto rounded-lg bg-white py-3.5 md:px-4 md:max-w-2xl"
     >
-      <ClientOnly>
+      <!--<ClientOnly>
         <LazyDonutChart
           v-if="shouldLoadChart"
           :options="options"
           :series="series"
           unit="%"
         />
-      </ClientOnly>
+      </ClientOnly>-->
+      TEST123
     </article>
     <p v-else class="text-secondaryText">
       No repositories with languages found for this user.

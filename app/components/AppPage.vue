@@ -35,7 +35,9 @@
           class="absolute top-0 left-0 z-30 w-full bg-transparent"
         />
         <AppContainer>
-          <slot name="content" />
+          <main>
+            <slot name="content" />
+          </main>
           <AppFooter v-if="isLandingPage" :is-transparent="true" />
         </AppContainer>
       </div>
@@ -44,7 +46,9 @@
       <AppNavbar :is-navbar-minimal="isNavbarMinimal" />
     </template>
     <AppContainer v-if="!isLandingPage">
-      <slot />
+      <main>
+        <slot />
+      </main>
       <AppFooter />
     </AppContainer>
   </div>

@@ -32,6 +32,7 @@
           <NuxtLink
             :to="`/githubUser/${user.login}`"
             class="absolute inset-0 flex-1 z-10"
+            :aria-label="`View GitHub user ${user.login} profile`"
           />
           <AddToFavorites
             class="relative z-20"

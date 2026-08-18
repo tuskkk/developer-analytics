@@ -22,24 +22,24 @@
         No favorite developers yet.
       </div>
       <ul v-else class="grid gap-4 md:grid-cols-3 lg:gap-7 lg:grid-cols-4">
-        <NuxtLink
+        <GithubUserInfo
           v-for="user in favoriteUsersData"
           :key="user.login"
-          :to="`/githubUser/${user.login}`"
-          class="flex-1 text-lg font-medium hover:text-secondary transition-colors"
+          class="relative w-full flex items-center justify-between p-4 rounded-lg border border-tertiary bg-white shadow text-lg font-medium transition-colors hover:bg-stroke hover:text-secondary"
+          :user="user"
+          is-full-version
         >
-          <GithubUserInfo
-            class="flex items-center justify-between p-4 max-w-xs rounded-lg border border-tertiary bg-white shadow hover:bg-stroke transition-colors md:max-w-auto lg:p-12"
-            :user="user"
-            is-full-version
-          >
-            <AddToFavorites
-              :login="user.login"
-              :is-favorite="isUserFavorite(user.login)"
-              @toggle-favorites="removeFromFavorites(user.login)"
-            />
-          </GithubUserInfo>
-        </NuxtLink>
+          <NuxtLink
+            :to="`/githubUser/${user.login}`"
+            class="absolute inset-0 flex-1 z-10"
+          />
+          <AddToFavorites
+            class="relative z-20"
+            :login="user.login"
+            :is-favorite="isUserFavorite(user.login)"
+            @toggle-favorites="removeFromFavorites(user.login)"
+          />
+        </GithubUserInfo>
       </ul>
     </div>
   </AppPage>

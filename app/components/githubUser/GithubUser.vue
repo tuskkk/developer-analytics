@@ -35,12 +35,12 @@ const { user } = storeToRefs(githubUserDetailsStore);
 
 const avatarUrl = computed(() => {
   if (!user.value?.avatarUrl) {
-    return ''
+    return "";
   }
 
-  const url = new URL(user.value.avatarUrl)
-  url.searchParams.set('s', '288')
+  const url = new URL(user.value.avatarUrl);
+  url.searchParams.set("s", "288");
 
-  return url.toString()
-})
+  return url.toString();
+});
 </script>

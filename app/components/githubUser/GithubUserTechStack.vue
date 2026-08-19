@@ -5,7 +5,7 @@
     </h2>
     <article
       v-if="areThereRepositories && areThereLanguages"
-      class="mx-auto rounded-lg bg-white py-3.5 md:px-4 md:max-w-2xl"
+      class="mx-auto rounded-lg bg-white py-3.5 tracking-wider md:px-4 md:max-w-2xl"
     >
       <ClientOnly>
         <LazyDonutChart

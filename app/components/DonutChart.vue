@@ -2,6 +2,7 @@
   <VueApexCharts
     v-if="series.length"
     type="donut"
+    height="360"
     :options="chartOptions"
     :series="series"
   />
@@ -18,12 +19,29 @@ const props = defineProps<{
 
 const chartOptions = computed(() => ({
   ...baseOptions,
+  chart: {
+    height: 500,
+  },
   labels: props.options,
+  fill: {
+    type: "gradient",
+  },
   tooltip: {
     y: {
       formatter: unitFormatter,
     },
   },
+  responsive: [
+    {
+      breakpoint: 640,
+      options: {
+        legend: {
+          position: "bottom",
+          fontSize: "12px",
+        },
+      },
+    },
+  ],
 }));
 
 const unitFormatter = (value: number) => {

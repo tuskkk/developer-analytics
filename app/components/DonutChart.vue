@@ -19,9 +19,6 @@ const props = defineProps<{
 
 const chartOptions = computed(() => ({
   ...baseOptions,
-  chart: {
-    height: 500,
-  },
   labels: props.options,
   fill: {
     type: "gradient",
@@ -35,6 +32,9 @@ const chartOptions = computed(() => ({
     {
       breakpoint: 640,
       options: {
+        chart: {
+          height: 400,
+        },
         legend: {
           position: "bottom",
           fontSize: "12px",
